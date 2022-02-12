@@ -40,6 +40,22 @@ const NavbarContainer = styled.div`
     text-align: start;
 `
 
+const Version = styled.a`
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    margin-top: 2rem;
+
+    &:hover {
+        color: white;
+        text-decoration: underline;
+    }
+
+    @media print {
+        display: none;
+    }
+`
+
 const Home: NextPage = () => {
     return (
         <>
@@ -51,12 +67,12 @@ const Home: NextPage = () => {
 		        <meta name="viewport" content="width=device-width, initial-scale=1;" />
             </Head>
 
-
             <Container>
                 <NavbarContainer>
                     <Navbar />
                 </NavbarContainer>
                 <App />
+                <Version href="https://github.com/Antony1060/resume" target="_blank">Version { process.env.NEXT_PUBLIC_COMMIT_REF ?? "development" }</Version>
             </Container>
         </>
     )
