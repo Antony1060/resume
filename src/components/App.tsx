@@ -1,8 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
-    height: 100vh;
+const Alert = styled.div`
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,10 +21,10 @@ const Container = styled.div`
 
 const App: FC = () => {
     return (
-        <Container>
+        <Alert>
             <span>Work in progress...</span>
             <span>Check back later</span>
-        </Container>
+        </Alert>
     )
 }
 

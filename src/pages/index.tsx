@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import App from '../components/App'
+import Navbar from "../components/navbar/Navbar";
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -17,17 +18,47 @@ const GlobalStyles = createGlobalStyle`
     }
 `
 
+const Container = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 2rem;
+`
+
+const NavbarContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 1000px;
+    max-width: 100%;
+    gap: 2rem;
+    padding: 2rem;
+    text-align: start;
+`
+
 const Home: NextPage = () => {
     return (
-        <div>
+        <>
             <GlobalStyles />
             <Head>
                 <title>Antonio Fran Štignjedec | Resume</title>
+		        <link rel="icon" href="/favicon.png" />
                 <meta name="description" content="A currated list of my skills" />
+		        <meta name="viewport" content="width=device-width, initial-scale=1;" />
             </Head>
 
-            <App />
-        </div>
+
+            <Container>
+                <NavbarContainer>
+                    <Navbar />
+                </NavbarContainer>
+                <App />
+            </Container>
+        </>
     )
 }
 
