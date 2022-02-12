@@ -48,6 +48,10 @@ const LinksContainer = styled.div`
     align-items: center;
     gap: 2rem;
     flex-wrap: wrap;
+
+    @media (max-width: 500px) {
+        gap: 1rem;
+    }
 `
 
 const Divider = styled.div`
