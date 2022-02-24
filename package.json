@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "VITE_COMMIT_REF=$(git show -s --format=%h) vite",
-    "build": "VITE_COMMIT_REF=$(git show -s --format=%h) vite build --outDir dist/static && vite build --ssr src/server-render.tsx --outDir dist/server && node prerender",
+    "build": "export VITE_COMMIT_REF=$(git show -s --format=%h) && vite build --outDir dist/static && vite build --ssr src/server-render.tsx --outDir dist/server && node prerender",
     "prebuild": "rm -rf dist/static",
     "preview": "vite preview"
   },

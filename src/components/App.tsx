@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
+
     body {
         background-color: #0A0D13;
         color: white;
@@ -41,10 +42,12 @@ const Version = styled.a`
     color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     margin-top: 2rem;
+
     &:hover {
         color: white;
         text-decoration: underline;
     }
+
     @media print {
         display: none;
     }
@@ -62,6 +65,7 @@ const Alert = styled.div`
     span:first-child {
         font-size: 4rem;
     }
+
     span:nth-child(2) {
         opacity: 0.6;
     }
@@ -79,7 +83,11 @@ function App() {
                     <span>Work in progress...</span>
                     <span>Check back later</span>
                 </Alert>
-                <Version href="https://github.com/Antony1060/resume" target="_blank">Version { import.meta.env.VITE_COMMIT_REF ?? "development" }</Version>
+                <Version
+                    href="https://github.com/Antony1060/resume"
+                    target="_blank"
+                    dangerouslySetInnerHTML={{ __html: "Version " + (import.meta.env.VITE_COMMIT_REF as string | undefined ?? "development") }}
+                ></Version>
             </Container>
         </>
     )
