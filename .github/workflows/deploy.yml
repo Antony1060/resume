@@ -20,7 +20,7 @@ jobs:
         run: yarn build
       - uses: vimtor/action-zip@v1
         with:
-          files: out/
+          files: dist/static
           dest: result.zip
       - uses: actions/upload-artifact@v2
         with:
