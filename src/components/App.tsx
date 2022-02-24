@@ -58,6 +58,7 @@ const Alert = styled.div`
     align-items: center;
     gap: 1rem;
     text-align: center;
+    
     span:first-child {
         font-size: 4rem;
     }

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import styled from "styled-components";
 
 const Link = styled.a<{ $hideOnMobile: boolean, $hideOnPortrait: boolean }>`
@@ -33,8 +33,13 @@ const Link = styled.a<{ $hideOnMobile: boolean, $hideOnPortrait: boolean }>`
 `
 
 const NavbarLink: FC<{ href: string, hideOnMobile?: boolean, hideOnPortrait?: boolean }> = ({ href, hideOnMobile = false, hideOnPortrait = false, children }) => {
+    const onClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
+        if(`${window.location.protocol}//${window.location.host}` === href)
+            e.preventDefault();
+    }
+
     return (
-        <Link href={href} $hideOnMobile={hideOnMobile} $hideOnPortrait={hideOnPortrait}>
+        <Link href={href} $hideOnMobile={hideOnMobile} $hideOnPortrait={hideOnPortrait} onClick={onClick}>
             <span>./</span>
             <span>{ children }</span>
         </Link>
