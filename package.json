@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build --outDir dist/static && vite build --ssr src/server-render.tsx --outDir dist/server && node prerender",
+    "dev": "VITE_COMMIT_REF=$(git show -s --format=%h) vite",
+    "build": "VITE_COMMIT_REF=$(git show -s --format=%h) vite build --outDir dist/static && vite build --ssr src/server-render.tsx --outDir dist/server && node prerender",
     "prebuild": "rm -rf dist/static",
     "preview": "vite preview"
   },
@@ -15,9 +15,11 @@
   "devDependencies": {
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
+    "@types/styled-components": "^5.1.23",
     "@vitejs/plugin-react": "^1.0.7",
-    "vite-plugin-compression": "^0.5.1",
+    "styled-components": "^5.3.3",
     "typescript": "^4.5.4",
-    "vite": "^2.8.0"
+    "vite": "^2.8.0",
+    "vite-plugin-compression": "^0.5.1"
   }
 }

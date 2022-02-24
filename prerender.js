@@ -10,11 +10,11 @@ const template = fs.readFileSync(toAbsolute('dist/static/index.html'), 'utf-8')
 const { render } = require('./dist/server/server-render.js')
 
 ; (async () => {
-    const appHtml = await render();
+    const { style, html } = await render();
 
-    const html = template.replace(`<!--app-html-->`, appHtml)
+    const appHtml = template.replace(`<!--app-html-->`, html).replace(`<!--app-css-->`, style);
 
     const filePath = `dist/static/index.html`
-    fs.writeFileSync(toAbsolute(filePath), html)
+    fs.writeFileSync(toAbsolute(filePath), appHtml)
     console.log('pre-rendered:', filePath)
 })()
