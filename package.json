@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --outDir dist/static && npm run build:server && node prerender",
-    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
-    "prebuild": "rm -rf dist",
+    "build": "vite build --outDir dist/static && vite build --ssr src/server-render.tsx --outDir dist/server && node prerender",
+    "prebuild": "rm -rf dist/static",
     "preview": "vite preview"
   },
   "dependencies": {

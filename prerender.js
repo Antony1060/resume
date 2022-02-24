@@ -7,7 +7,7 @@ const path = require('path')
 const toAbsolute = (p) => path.resolve(__dirname, p)
 
 const template = fs.readFileSync(toAbsolute('dist/static/index.html'), 'utf-8')
-const { render } = require('./dist/server/entry-server.js')
+const { render } = require('./dist/server/server-render.js')
 
 ; (async () => {
     const appHtml = await render();
