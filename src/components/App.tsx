@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import Navbar from './navbar/Navbar'
 import GithubCalendar from './parts/calendar/GithubCalendar'
+import Introduction from './parts/Introduction'
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -60,7 +61,7 @@ const ContentContainer = styled.div`
     width: 100%;
     max-width: 900px;
     padding: 1rem;
-    gap: 1rem;
+    gap: 3rem;
 `
 
 function App() {
@@ -72,7 +73,7 @@ function App() {
                     <Navbar />
                 </NavbarContainer>
                 <ContentContainer>
-                    <h2 style={{ textAlign: "center" }}>Still work in progress</h2>
+                    <Introduction />
                     <GithubCalendar />
                 </ContentContainer>
                 <Version

@@ -8,8 +8,6 @@ const BorderWrapper = styled.div<{ name: string, comment?: string, $fit: boolean
     position: relative;
     width: ${({ $fit }) => $fit ? "fit-content" : "100%"};
     max-width: 100%;
-    display: flex;
-    justify-content: center;
 
     &::before {
         content: "${({ name }) => name}";
@@ -37,6 +35,7 @@ const BorderWrapper = styled.div<{ name: string, comment?: string, $fit: boolean
 export const SectionWrapper = styled.div`
     width: fit-content;
     height: fit-content;
+    width: 100%;
     max-width: 100%;
     padding: 1rem;
     padding-top: 1.2rem;
