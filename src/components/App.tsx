@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import Navbar from './navbar/Navbar'
+import GithubCalendar from './parts/GithubCalendar'
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -53,22 +54,13 @@ const Version = styled.a`
     }
 `
 
-const Alert = styled.div`
-    height: 100%;
+const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    padding: 1rem;
     gap: 1rem;
-    text-align: center;
-    
-    span:first-child {
-        font-size: 4rem;
-    }
-
-    span:nth-child(2) {
-        opacity: 0.6;
-    }
 `
 
 function App() {
@@ -79,10 +71,10 @@ function App() {
                 <NavbarContainer>
                     <Navbar />
                 </NavbarContainer>
-                <Alert>
-                    <span>Work in progress...</span>
-                    <span>Check back later</span>
-                </Alert>
+                <ContentContainer>
+                    <h2 style={{ textAlign: "center" }}>Still work in Progress</h2>
+                    <GithubCalendar />
+                </ContentContainer>
                 <Version
                     href="https://github.com/Antony1060/resume"
                     target="_blank"
