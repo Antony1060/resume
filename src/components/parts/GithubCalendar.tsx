@@ -32,7 +32,7 @@ const Container = styled.div`
 `;
 
 const Calendar = styled.div`
-    background-color: #16191f;
+    background-color: #0a0d13;
     border-radius: 4px;
     border: 1px solid white;
     width: fit-content;
