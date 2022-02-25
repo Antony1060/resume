@@ -1,4 +1,5 @@
-import { FC, useEffect, useRef } from "react";
+import { debounce } from "debounce";
+import { FC, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { format } from "../../../lib/date";
 import { ContributionLevel, ContributionWeek } from "./GithubCalendar";
@@ -45,20 +46,36 @@ const DayHover = styled.div<{ $flipY: boolean }>`
 const CalendarDay: FC<{ day: ContributionWeek["contributionDays"][number] }> = ({ day }) => {
     const ref = useRef<HTMLDivElement>(null);
 
+    const [ padCall, setPadCall ] = useState(0);
+
     // weird shinanigans for positioning the hover box
+    const padElement = (el: HTMLElement, container: HTMLElement) => {
+        setPadCall(p => p + 1);
+        el.style["left"] = `50%`;
+        
+        const leftOverflow = (el.getBoundingClientRect().x + el.clientWidth) - (container.getBoundingClientRect().x + container.clientWidth);
+        if(leftOverflow > 0)
+            el.style["left"] = `calc(50% - ${leftOverflow}px - 1rem)`;
+
+        const rightOverflow = container.getBoundingClientRect().x - el.getBoundingClientRect().x;
+        if(rightOverflow > 0)
+            el.style["left"] = `calc(50% + ${rightOverflow}px + 1rem)`;
+    }
+
     useEffect(() => {
         if(!ref?.current) return;
         const element = ref.current;
         const container = element?.parentElement?.parentElement?.parentElement; // element(DayHover) -> Container -> ContainerWeek -> Container
         if(!container) return;
+        
+        padElement(element, container);
 
-        const leftOverflow = (element.getBoundingClientRect().x + element.clientWidth) - (container.getBoundingClientRect().x + container.clientWidth);
-        if(leftOverflow > 0)
-            element.style["left"] = `calc(50% - ${leftOverflow}px - 1rem)`;
+        const debounced = debounce(() => padElement(element, container), 600);
 
-        const rightOverflow = container.getBoundingClientRect().x - element.getBoundingClientRect().x;
-        if(rightOverflow > 0)
-            element.style["left"] = `calc(50% + ${rightOverflow}px + 1rem)`;
+        const listener = () => debounced();
+
+        window.addEventListener("resize", listener);
+        return () => window.removeEventListener("resize", listener);
     }, [ref]);
 
     return (
