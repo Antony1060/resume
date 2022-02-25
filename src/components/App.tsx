@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import Navbar from './navbar/Navbar'
-import GithubCalendar from './parts/GithubCalendar'
+import GithubCalendar from './parts/calendar/GithubCalendar'
 
 const GlobalStyles = createGlobalStyle`
     * {

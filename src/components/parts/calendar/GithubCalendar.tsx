@@ -1,27 +1,17 @@
 import { FC, useEffect, useState } from "react"
 import axios from "axios";
 import styled from "styled-components";
-import { format } from "../../lib/date";
+import CalendarDay from "./CalendarDay";
 
-type ContributionLevel = "NONE" | "FIRST_QUARTILE" | "SECOND_QUARTILE" | "THIRD_QUARTILE" | "FOURTH_QUARTILE";
+export type ContributionLevel = "NONE" | "FIRST_QUARTILE" | "SECOND_QUARTILE" | "THIRD_QUARTILE" | "FOURTH_QUARTILE";
 
-type ContributionWeek = {
+export type ContributionWeek = {
     contributionDays: {
         contributionCount: number,
         contributionLevel: ContributionLevel,
         date: Date,
         weekday: number
     }[]
-}
-
-const levelToColor = (level: ContributionLevel) => {
-    switch(level) {
-        case "NONE": return "#272b33";
-        case "FIRST_QUARTILE": return "#216e39";
-        case "SECOND_QUARTILE": return "#30a14e";
-        case "THIRD_QUARTILE": return "#40c463";
-        case "FOURTH_QUARTILE": return "#84e995"
-    }
 }
 
 const Container = styled.div`
@@ -55,42 +45,6 @@ const CalendarWeek = styled.div`
     gap: 4px;
 `;
 
-const CalendarDay = styled.div<{ level: ContributionLevel }>`
-    height: 10px;
-    width: 10px;
-    background-color: ${({ level }) => levelToColor(level)};
-    border-radius: 1px;
-    position: relative;
-
-    &:hover div {
-        display: block;
-    }
-`;
-
-const DayHover = styled.div`
-    position: absolute;
-    top: calc(-100% - 2rem);
-    left: 50%;
-    display: flex;
-    width: max-content;
-    transform: translateX(-50%);
-    display: none;
-    background-color: #282c32ee;
-    border: 1px solid gray;
-    padding: 0.4rem;
-    border-radius: 4px;
-    text-align: center;
-    font-size: 0.9rem;
-    z-index: 10;
-`;
-
-const Title = styled.div`
-    opacity: 0.8;
-    padding: 0.4rem 0.4rem;
-    border-bottom: 1px solid #363b46;
-`
-
-
 const GithubCalendar: FC = () => {
     const [ data, setData ] = useState<ContributionWeek[]>([]);
 
@@ -111,13 +65,7 @@ const GithubCalendar: FC = () => {
                 {!data.length ? "Loading data..." :
                     data.map((week, i) =>
                         <CalendarWeek key={i}>
-                            {week.contributionDays.map(day =>
-                                <CalendarDay level={day.contributionLevel} key={day.date.toISOString()}>
-                                    <DayHover>
-                                        <b>{day.contributionCount} {day.contributionCount === 1 ? "contribution" : "contributions"}</b> on {format(day.date)}
-                                    </DayHover>
-                                </CalendarDay>
-                            )}
+                            {week.contributionDays.map(day => <CalendarDay day={day} key={day.date.toISOString()} />)}
                         </CalendarWeek>
                     )
                 }
