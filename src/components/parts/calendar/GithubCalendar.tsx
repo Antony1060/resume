@@ -27,6 +27,7 @@ const Calendar = styled(SectionWrapper)`
     justify-content: right;
     gap: 4px;
     overflow: hidden;
+    text-align: center;
 
     div:first-child {
         align-self: end;
@@ -59,7 +60,7 @@ const GithubCalendar: FC = () => {
     }, [data])
 
     return (
-        <Container>
+        <Container className="nojs-disable">
             <SectionContainer name="Contribution in the past year" comment={total > 0 ? `${total}` : undefined} fit style={Calendar}>
                 {!data.length ? "Loading data..." :
                     data.map((week, i) =>

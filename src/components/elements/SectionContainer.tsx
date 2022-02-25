@@ -1,11 +1,15 @@
 import { FC } from "react";
 import styled, { StyledComponent } from "styled-components";
 
-type StyleArs = { $fit: boolean }
-
-const BorderWrapper = styled.div<{ name: string, comment?: string }>`
+const BorderWrapper = styled.div<{ name: string, comment?: string, $fit: boolean }>`
+    background-color: #0a0d13;
+    border-radius: 4px;
+    border: 1px solid white;
     position: relative;
+    width: ${({ $fit }) => $fit ? "fit-content" : "100%"};
     max-width: 100%;
+    display: flex;
+    justify-content: center;
 
     &::before {
         content: "${({ name }) => name}";
@@ -30,21 +34,18 @@ const BorderWrapper = styled.div<{ name: string, comment?: string }>`
     ` : ""}
 `
 
-export const SectionWrapper = styled.div<StyleArs>`
-    background-color: #0a0d13;
-    border-radius: 4px;
-    border: 1px solid white;
-    width: ${({ $fit }) => $fit ? "fit-content" : "100%"};
+export const SectionWrapper = styled.div`
+    width: fit-content;
     height: fit-content;
     max-width: 100%;
     padding: 1rem;
     padding-top: 1.2rem;
 `;
 
-const SectionContainer: FC<{ name: string, comment?: string, fit?: boolean, style?: StyledComponent<"div", any, StyleArs> }> = ({ name, comment, fit = false, style: Style = SectionWrapper, children }) => {
+const SectionContainer: FC<{ name: string, comment?: string, fit?: boolean, style?: StyledComponent<"div", any> }> = ({ name, comment, fit = false, style: Style = SectionWrapper, children }) => {
     return (
-        <BorderWrapper name={name} comment={comment}>
-            <Style $fit={fit}>
+        <BorderWrapper $fit={fit} name={name} comment={comment}>
+            <Style>
                 {children}
             </Style>
         </BorderWrapper>
