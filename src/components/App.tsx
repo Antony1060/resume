@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components'
+import SectionContainer from './elements/SectionContainer'
 import Navbar from './navbar/Navbar'
 import GithubCalendar from './parts/calendar/GithubCalendar'
 import Introduction from './parts/Introduction'
@@ -74,6 +75,15 @@ function App() {
                 </NavbarContainer>
                 <ContentContainer>
                     <Introduction />
+                    <SectionContainer name="Education" />
+                    <SectionContainer name="Work history" />
+                    <SectionContainer name="Skillset">
+                        <SectionContainer name="Technologies" />
+                        <SectionContainer name="Languages" />
+                        <SectionContainer name="Databases" />
+                        <SectionContainer name="Tools" />
+                    </SectionContainer>
+                    <SectionContainer name="Repositories" />
                     <GithubCalendar />
                 </ContentContainer>
                 <Version
