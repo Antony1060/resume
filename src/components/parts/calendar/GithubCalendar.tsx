@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react"
 import axios from "axios";
 import styled from "styled-components";
 import CalendarDay from "./CalendarDay";
+import SectionContainer, { SectionWrapper } from "../../elements/SectionContainer";
 
 export type ContributionLevel = "NONE" | "FIRST_QUARTILE" | "SECOND_QUARTILE" | "THIRD_QUARTILE" | "FOURTH_QUARTILE";
 
@@ -21,18 +22,11 @@ const Container = styled.div`
     overflow: visible;
 `;
 
-const Calendar = styled.div`
-    background-color: #0a0d13;
-    border-radius: 4px;
-    border: 1px solid white;
-    width: fit-content;
-    height: fit-content;
-    max-width: 100%;
-    padding: 1rem;
+const Calendar = styled(SectionWrapper)`
     display: flex;
     justify-content: right;
     gap: 4px;
-    overflow-x: hidden;
+    overflow: hidden;
 
     div:first-child {
         align-self: end;
@@ -61,7 +55,7 @@ const GithubCalendar: FC = () => {
 
     return (
         <Container>
-            <Calendar>
+            <SectionContainer name="Contribution in the past year" fit style={Calendar}>
                 {!data.length ? "Loading data..." :
                     data.map((week, i) =>
                         <CalendarWeek key={i}>
@@ -69,7 +63,7 @@ const GithubCalendar: FC = () => {
                         </CalendarWeek>
                     )
                 }
-            </Calendar>
+            </SectionContainer>
         </Container>
     )
 }

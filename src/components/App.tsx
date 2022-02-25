@@ -72,7 +72,7 @@ function App() {
                     <Navbar />
                 </NavbarContainer>
                 <ContentContainer>
-                    <h2 style={{ textAlign: "center" }}>Still work in Progress</h2>
+                    <h2 style={{ textAlign: "center" }}>Still work in progress</h2>
                     <GithubCalendar />
                 </ContentContainer>
                 <Version
