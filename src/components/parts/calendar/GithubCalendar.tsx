@@ -41,11 +41,12 @@ const CalendarWeek = styled.div`
 
 const GithubCalendar: FC = () => {
     const [ data, setData ] = useState<ContributionWeek[]>([]);
+    const [ total, setTotal ] = useState(0);
 
     useEffect(() => {
-        axios.get("https://backend.antony.red/about/contact/gh-weeks").then(res => res.data).then((data: Record<string, ContributionWeek> & { status?: number }) => {
-            delete data["status"];
-            setData((Object.values(data) as ContributionWeek[]).map(it => ({
+        axios.get("https://backend.antony.red/about/contact/gh-weeks").then(res => res.data).then((reqData: Record<string, ContributionWeek> & { status?: number }) => {
+            delete reqData["status"];
+            setData((Object.values(reqData) as ContributionWeek[]).map(it => ({
                 contributionDays: it.contributionDays
                                         .map(day => ({ ...day, date: new Date(day.date) }))
                                         .sort((a, b) => a.date.getTime() - b.date.getTime())
@@ -53,9 +54,13 @@ const GithubCalendar: FC = () => {
         });
     }, []);
 
+    useEffect(() => {
+        setTotal(data.reduce((acc, curr) => acc + curr.contributionDays.reduce((dAcc, dCurr) => dAcc + dCurr.contributionCount, 0), 0) ?? 0);
+    }, [data])
+
     return (
         <Container>
-            <SectionContainer name="Contribution in the past year" fit style={Calendar}>
+            <SectionContainer name="Contribution in the past year" comment={total > 0 ? `${total}` : undefined} fit style={Calendar}>
                 {!data.length ? "Loading data..." :
                     data.map((week, i) =>
                         <CalendarWeek key={i}>
