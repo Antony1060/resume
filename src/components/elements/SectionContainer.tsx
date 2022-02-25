@@ -3,8 +3,6 @@ import styled, { StyledComponent } from "styled-components";
 
 const BorderWrapper = styled.div<{ name: string, comment?: string, $fit: boolean }>`
     background-color: #0a0d13;
-    border-radius: 4px;
-    border: 1px solid white;
     position: relative;
     width: ${({ $fit }) => $fit ? "fit-content" : "100%"};
     max-width: 100%;
@@ -33,6 +31,8 @@ const BorderWrapper = styled.div<{ name: string, comment?: string, $fit: boolean
 `
 
 export const SectionWrapper = styled.div`
+    border-radius: 4px;
+    border: 1px solid #dadada;
     width: fit-content;
     height: fit-content;
     width: 100%;
