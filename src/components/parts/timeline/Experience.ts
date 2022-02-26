@@ -17,12 +17,17 @@ const monthFromSimple = (month: Month, year: number) => new Date(`${year}-${mont
 type Diff = { years: number, months: number };
 
 export const diffDates = (start: Date, end: Date): Diff => {
-    const years = end.getFullYear() - start.getFullYear();
-    const months = years * 12 - end.getMonth() + start.getMonth();
-    return { years, months };
+    const months = (end.getFullYear() - start.getFullYear() - 1) * 12 + (12 - start.getMonth()) + end.getMonth();
+    const years = Math.floor(months / 12);
+    return { years, months: months % 12 };
 }
 
-export const formatDiff = (diff: Diff) => `${diff.years} yrs, ${diff.months} mos`
+export const formatDiff = (diff: Diff) => {
+    if(diff.years === 0)
+        return `${diff.months} mos`;
+    
+    return `${diff.years} yrs, ${diff.months} mos`;
+}
 
 export const Experiences: Experience[] = [{
     type: "self-employed",
@@ -35,6 +40,6 @@ export const Experiences: Experience[] = [{
     type: "contract",
     location: "remote",
     start: monthFromSimple("May", 2021),
-    end: monthFromSimple("Oct", 2022),
+    end: monthFromSimple("Oct", 2021),
     title: "System Administrator and Developer"
 }].sort((a, b) => b.start.getTime() - a.start.getTime()).sort((a) => a.end ? 1 : -1) as Experience[];
