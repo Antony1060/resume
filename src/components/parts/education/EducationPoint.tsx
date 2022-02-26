@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled, { keyframes } from "styled-components";
 import { EducationStatus } from "./Education";
 
-const Detail = styled.div`
+const Detail = styled.div<{ status: EducationStatus }>`
     position: absolute;
     top: -0.6rem;
     left: 50%;
@@ -18,6 +18,10 @@ const Detail = styled.div`
     text-align: left;
     gap: 0.6rem;
     pointer-events: none;
+
+    @media (max-width: 950px) {
+        left: ${({ status }) => status === "passed" ? "100%" : status === "future" ? "0" : "50%"};
+    }
 `;
 
 const Container = styled.div<{ status: EducationStatus }>`
@@ -147,7 +151,7 @@ const EducationPoint: FC<{ status: EducationStatus, description: string, detail?
         <Container status={status}>
             {status === "active" && <RadarEffect />}
             <Description status={status}>{description}</Description>
-            <Detail>
+            <Detail status={status}>
                 {!detail || !progressPercent ?
                     <span style={{ padding: "0.6rem", textAlign: "center", fontSize: "1rem" }}>Unknown so far...</span>
                 :
