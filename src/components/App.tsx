@@ -2,6 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import SectionContainer from './elements/SectionContainer'
 import Navbar from './navbar/Navbar'
 import GithubCalendar from './parts/calendar/GithubCalendar'
+import Education from './parts/education/Education'
 import Introduction from './parts/Introduction'
 import Repositories from './parts/repositories/Repositories'
 import Skillset from './parts/skillset/Skillset'
@@ -77,7 +78,7 @@ function App() {
                 </NavbarContainer>
                 <ContentContainer>
                     <Introduction />
-                    <SectionContainer name="Education" />
+                    <Education />
                     <SectionContainer name="Work history" />
                     <Skillset />
                     <Repositories />
