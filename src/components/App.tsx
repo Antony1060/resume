@@ -4,6 +4,7 @@ import Navbar from './navbar/Navbar'
 import GithubCalendar from './parts/calendar/GithubCalendar'
 import Introduction from './parts/Introduction'
 import Repositories from './parts/repositories/Repositories'
+import Skillset from './parts/skillset/Skillset'
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -78,12 +79,7 @@ function App() {
                     <Introduction />
                     <SectionContainer name="Education" />
                     <SectionContainer name="Work history" />
-                    <SectionContainer name="Skillset">
-                        <SectionContainer name="Technologies" />
-                        <SectionContainer name="Tools" />
-                        <SectionContainer name="Languages" />
-                        <SectionContainer name="Databases" />
-                    </SectionContainer>
+                    <Skillset />
                     <Repositories />
                     <GithubCalendar />
                 </ContentContainer>

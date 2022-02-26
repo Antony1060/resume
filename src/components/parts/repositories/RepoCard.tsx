@@ -5,7 +5,7 @@ import { Book, Globe, Code, User, Users } from "react-feather";
 
 const Container = styled.div`
     border-bottom: 1px solid #24282e;
-    border-left: 1px solid #24282e;
+    border-right: 1px solid #24282e;
     display: flex;
     flex-direction: column;
 
