@@ -94,6 +94,7 @@ const SubWrapperThird = styled(SubWrapper)`
 
     @media (max-width: 600px) {
         border-radius: 0;
+        border-right: 1px solid #dadada;
         border-bottom: none;
     }
 `;
