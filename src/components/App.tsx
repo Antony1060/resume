@@ -6,6 +6,7 @@ import Education from './parts/education/Education'
 import Introduction from './parts/Introduction'
 import Repositories from './parts/repositories/Repositories'
 import Skillset from './parts/skillset/Skillset'
+import Timeline from './parts/Timeline'
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -88,7 +89,7 @@ function App() {
                 <ContentContainer>
                     <Introduction />
                     <Education />
-                    <SectionContainer name="Timeline" />
+                    <Timeline />
                     <Skillset />
                     <Repositories />
                     <GithubCalendar />

@@ -1,6 +1,8 @@
 import { FC } from "react";
+import { GitHub } from "react-feather";
 import styled from "styled-components";
 import SectionContainer, { SectionWrapper } from "../../elements/SectionContainer";
+import { WhiteLink } from "../../elements/WhiteLink";
 import RepoCard from "./RepoCard";
 import { Repos } from "./Repos";
 
@@ -21,7 +23,7 @@ const Wrapper = styled(SectionWrapper)`
 
 const Repositories: FC = () => {
     return (
-        <SectionContainer name="Repositories" style={Wrapper}>
+        <SectionContainer name="Repositories" style={Wrapper} after={<WhiteLink href="https://github.com/antony1060" target="_blank"><GitHub size={20} /></WhiteLink>}>
             {Repos.map(it => <RepoCard repo={it} key={it.name} />)}
         </SectionContainer>
     )
