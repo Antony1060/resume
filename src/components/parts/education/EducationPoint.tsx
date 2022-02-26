@@ -24,13 +24,25 @@ const Detail = styled.div<{ status: EducationStatus }>`
     }
 `;
 
+const radarColor = keyframes`
+    from {
+        background-color: #55e455;
+    }
+
+    to {
+        background-color: #29964a;
+    }
+`;
+
 const Container = styled.div<{ status: EducationStatus }>`
-    background-color: ${({ status }) => status === "passed" ? "#3f5c96" : status === "active" ? "#55e480" : "#272b33"};
+    background-color: ${({ status }) => status === "passed" ? "#3f5c96" : status === "active" ? "#29964a" : "#272b33"};
     width: 25px;
     height: 25px;
     border-radius: 50%;
     z-index: 2;
     position: relative;
+    animation: ${radarColor} 1.2s ease infinite;
+    ${({ status }) => status !== "active" ? "animation: none;" : ""}
 
     &:hover ${Detail} {
         display: flex;
@@ -51,13 +63,13 @@ const radar = keyframes`
         left: -20px;
         width: calc(100% + 40px);
         height: calc(100% + 40px);
-        border-color: #55e45500;
+        border-color: #29964a00;
     }
 `;
 
 const RadarEffect = styled.div`
     position: absolute;
-    border:4px solid #55e480;
+    border: 4px solid #55e480;
     border-radius: 50%;
     animation: ${radar} 1.2s ease infinite;
     pointer-events: none;

@@ -1,7 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
 import NavbarLink from "./NavbarLink";
-import Favicon from "/favicon.png";
 
 const NavbarContainer = styled.div`
     width: 100%;
@@ -64,7 +63,7 @@ const Navbar: FC = () => {
         <NavbarContainer>
             <NavbarContent>
                 <Logo>
-                    <img style={{ width: "2rem" }} src={Favicon} alt="Logo" />
+                    <img style={{ width: "2rem" }} src="https://media.antony.red/logoTransparent.png" alt="Logo" />
                     <HomeLink href="/">~/resume</HomeLink>
                 </Logo>
                 <LinksContainer>

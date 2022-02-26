@@ -88,7 +88,7 @@ function App() {
                 <ContentContainer>
                     <Introduction />
                     <Education />
-                    <SectionContainer name="Work history" />
+                    <SectionContainer name="Timeline" />
                     <Skillset />
                     <Repositories />
                     <GithubCalendar />
