@@ -4,7 +4,7 @@ import styled, { StyledComponent } from "styled-components";
 const BorderWrapper = styled.div<{ name: string, comment?: string, $fit: boolean }>`
     background-color: #0a0d13;
     position: relative;
-    width: ${({ $fit }) => $fit ? "fit-content" : "100%"};
+    flex-grow: ${({ $fit }) => $fit ? "0" : "1"};
     max-width: 100%;
 
     &::before {

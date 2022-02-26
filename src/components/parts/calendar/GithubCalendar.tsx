@@ -25,9 +25,11 @@ const Container = styled.div`
 const Calendar = styled(SectionWrapper)`
     display: flex;
     justify-content: right;
+    align-items: center;
     gap: 4px;
     overflow: hidden;
     text-align: center;
+    min-height: 100px;
 
     div:first-child {
         align-self: end;
@@ -61,8 +63,8 @@ const GithubCalendar: FC = () => {
 
     return (
         <Container className="nojs-disable">
-            <SectionContainer name="Contribution in the past year" comment={total > 0 ? `${total}` : undefined} fit style={Calendar}>
-                {!data.length ? "Loading data..." :
+            <SectionContainer name="Contribution in the past year" comment={total > 0 ? `${total}` : undefined} fit={!!data.length} style={Calendar}>
+                {!data.length ? <span style={{ textAlign: "center", width: "100%" }}>Loading data...</span> :
                     data.map((week, i) =>
                         <CalendarWeek key={i}>
                             {week.contributionDays.map(day => <CalendarDay day={day} key={day.date.toISOString()} />)}
