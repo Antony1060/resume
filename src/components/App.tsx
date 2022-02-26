@@ -6,7 +6,7 @@ import Education from './parts/education/Education'
 import Introduction from './parts/Introduction'
 import Repositories from './parts/repositories/Repositories'
 import Skillset from './parts/skillset/Skillset'
-import Timeline from './parts/Timeline'
+import Timeline from './parts/timeline/Timeline'
 
 const GlobalStyles = createGlobalStyle`
     * {
