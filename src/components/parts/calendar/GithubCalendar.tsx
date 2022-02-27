@@ -25,7 +25,7 @@ const Container = styled.div`
 const Calendar = styled(SectionWrapper)`
     display: flex;
     justify-content: right;
-    align-items: center;
+    align-items: start;
     gap: 4px;
     overflow: hidden;
     text-align: center;
