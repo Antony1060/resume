@@ -50,7 +50,7 @@ const Org = styled.div`
 const Body = styled.div`
     padding: 1rem;
     color: #c9c9c9;
-    font-family: monospace;
+    font-family: "JetBrains Mono", monospace;
     flex-grow: 1;
     font-size: 1rem;
     border-bottom: 1px solid #161a1f;

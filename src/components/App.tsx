@@ -1,5 +1,4 @@
 import styled, { createGlobalStyle } from 'styled-components'
-import SectionContainer from './elements/SectionContainer'
 import Navbar from './navbar/Navbar'
 import GithubCalendar from './parts/calendar/GithubCalendar'
 import Education from './parts/education/Education'

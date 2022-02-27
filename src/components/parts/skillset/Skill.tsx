@@ -23,7 +23,7 @@ const Container = styled.div<{ imgHeight: number }>`
 
     span {
         font-size: 1rem;
-        font-family: monospace;
+        font-family: "JetBrains Mono", monospace;
     }
 `
 

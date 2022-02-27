@@ -35,7 +35,7 @@ const Detail = styled.div`
     font-size: 1rem;
 
     * {
-        font-family: monospace;
+        font-family: "JetBrains Mono", monospace;
     }
 
     @media (max-width: 450px) {
