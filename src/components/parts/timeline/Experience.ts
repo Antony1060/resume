@@ -33,7 +33,7 @@ export const Experiences: Experience[] = [{
     type: "self-employed",
     location: "Sveta Nedelja, Croatia",
     start: monthFromSimple("Oct", 2019),
-    title: "Independent Consultent"
+    title: "Independent Consultant"
 }, {
     company: "SimpliServers",
     logo: "https://media.antony.red/simpliservers.png",

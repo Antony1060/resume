@@ -40,6 +40,7 @@ const Detail = styled.div`
 
     @media (max-width: 450px) {
         gap: 0.4rem;
+        width: 100%;
     }
 `;
 
@@ -52,8 +53,8 @@ const SubDetail = styled.span`
     @media (max-width: 450px) {
         flex-direction: column;
         gap: 0;
-        padding: 0.2rem;
-        border: 1px dashed #24282e; 
+        padding: 0.2rem 0.4rem;
+        border: 1px dashed #24282e;
     }
 `;
 
