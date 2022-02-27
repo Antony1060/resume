@@ -113,7 +113,7 @@ const SubWrapperFourth = styled(SubWrapper)`
 
 const Skillset: FC = () => {
     return (
-        <SectionContainer name="Skill Set" style={Wrapper}>
+        <SectionContainer name="Skill set" style={Wrapper}>
             <SectionContainer name="Technologies" style={SubWrapperFirst}>
                 <Skill name="React" icon={ReactLogo} />
                 <Skill name="Vue" icon={VueLogo} />
