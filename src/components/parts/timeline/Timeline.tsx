@@ -37,6 +37,10 @@ const Detail = styled.div`
     * {
         font-family: monospace;
     }
+
+    @media (max-width: 450px) {
+        gap: 0.4rem;
+    }
 `;
 
 const SubDetail = styled.span`
@@ -44,6 +48,19 @@ const SubDetail = styled.span`
     font-size: 0.9rem;
     display: flex;
     gap: 0.4rem;
+
+    @media (max-width: 450px) {
+        flex-direction: column;
+        gap: 0;
+        padding: 0.2rem;
+        border: 1px dashed #24282e; 
+    }
+`;
+
+const Bullet = styled.span`
+    @media (max-width: 450px) {
+        display: none;
+    }
 `
 
 const Timeline: FC = () => {
@@ -55,16 +72,14 @@ const Timeline: FC = () => {
                         <span>{it.title}</span>
                         <SubDetail>
                             {it.company && <span>{it.company}</span>}
-                            {it.company && <span>{it.company && "•"}</span>}
+                            {it.company && <Bullet>{it.company && "•"}</Bullet>}
                             <span style={{ textTransform: "capitalize" }}>{it.type}</span>
-                            <span>&bull;</span>
+                            <Bullet>&bull;</Bullet>
                             <span style={{ textTransform: "capitalize" }}>{it.location}</span>
                         </SubDetail>
                         <SubDetail>
-                            <span>{formatSimpleDate(it.start)}</span>
-                            <span>-</span>
-                            <span>{it.end ? formatSimpleDate(it.end) : "Present"}</span>
-                            <span>&bull;</span>
+                            <span>{formatSimpleDate(it.start)} - {it.end ? formatSimpleDate(it.end) : "Present"}</span>
+                            <Bullet>&bull;</Bullet>
                             <span>{formatDiff(diffDates(it.start, it.end ?? new Date()))}</span>
                         </SubDetail>
                     </Detail>
