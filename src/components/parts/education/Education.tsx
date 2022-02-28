@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Info } from "react-feather";
 import styled from "styled-components";
+import { Percent } from "../../../lib/Percent";
 import SectionContainer from "../../elements/SectionContainer";
 import EducationPoint from "./EducationPoint";
 
@@ -78,7 +79,7 @@ const Education: FC = () => {
                         name: "OŠ Malešnica",
                         location: "Zagreb, Croatia",
                         years: 8,
-                        progress: { current: 1, total: 1 }
+                        progress: Percent(1)
                     }}
                 />
                 <Connector status="passed" />
@@ -89,10 +90,7 @@ const Education: FC = () => {
                         name: "XIII. Gymnasium",
                         location: "Zagreb, Croatia",
                         years: 4,
-                        progress: {
-                            current: 13,
-                            total: 20
-                        }
+                        progress: Percent(65)
                     }}
                 />
                 <Connector status="future" />

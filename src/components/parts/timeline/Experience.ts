@@ -1,13 +1,13 @@
 import { Month, monthNames } from "../../../lib/date";
 
 type Experience = {
-    company?: string, //
-    logo?: string, //
+    company?: string,
+    logo?: string,
     type: "full-time" | "part-time" | "self-employed" | "freelance" | "contract" | "internship", //
     location: "remote" | string,
     start: Date,
     end?: Date,
-    title: string //
+    title: string
 }
 
 export const formatSimpleDate = (date: Date) => `${monthNames[date.getMonth()]} ${date.getFullYear()}`;

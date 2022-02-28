@@ -150,14 +150,11 @@ type EducationDetail = {
     name: string,
     location: string,
     years: number,
-    progress: {
-        current: number,
-        total: number
-    }
+    progress: number
 }
 
 const EducationPoint: FC<{ status: EducationStatus, description: string, detail?: EducationDetail }> = ({ status, description, detail }) => {
-    const progressPercent = detail ? (detail.progress.current / detail.progress.total) * 100 : undefined
+    const progressPercent = detail ? detail?.progress * 100 : undefined;
 
     return (
         <Container status={status}>
