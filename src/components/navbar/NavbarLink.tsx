@@ -20,13 +20,13 @@ const Link = styled.a<{ $hideOnMobile: boolean, $hideOnPortrait: boolean }>`
     }
 
     ${p => p.$hideOnMobile ? `
-        @media (max-width: 700px) {
+        @media (max-width: 750px) {
             display: none;
         }
     ` : ""}
 
     ${p => p.$hideOnPortrait ? `
-        @media (max-width: 500px) {
+        @media (max-width: 550px) {
             display: none;
         }
     ` : ""}
