@@ -26,7 +26,7 @@ const Link = styled.a<{ $hideOnPortrait: boolean }>`
     ` : ""}
 `
 
-const NavbarLink: FC<{ href: string, hideOnMobile?: boolean, hideOnPortrait?: boolean }> = ({ href, hideOnMobile = false, hideOnPortrait = false, children }) => {
+const NavbarLink: FC<{ href: string, hideOnPortrait?: boolean }> = ({ href, hideOnPortrait = false, children }) => {
     const onClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
         if(`${window.location.protocol}//${window.location.host}` === href)
             e.preventDefault();
