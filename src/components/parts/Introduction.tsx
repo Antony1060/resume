@@ -4,11 +4,11 @@ import SectionContainer, { SectionWrapper } from "../elements/SectionContainer";
 
 const Wrapper = styled(SectionWrapper)`
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
 
     @media (max-width: 900px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 `
 
@@ -41,20 +41,22 @@ const DetailContainer = styled.div`
     justify-content: center;
 `;
 
-const Detail = styled.span<{ $mobileFriendly?: boolean }>`
+const DetailPart = styled.span<{ $mobileFriendly?: boolean }>`
     font-size: 1rem;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.4rem;
 
     span:first-child {
         color: #dadada;
         font-weight: 600;
+        flex-shrink: 0;
     }
 
     span:last-child, a {
         color: #ffd173;
         font-weight: 200;
+        flex-shrink: 0;
     }
 
     a {
@@ -73,45 +75,46 @@ const Detail = styled.span<{ $mobileFriendly?: boolean }>`
     `: ""}
 `;
 
+const Filler = styled.span<{ $mobileFriendly?: boolean }>`
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0.2;
+    
+    ${({ $mobileFriendly }) => $mobileFriendly ? `
+        @media (max-width: 500px) {
+            display: none;
+        }
+    `: ""}
+`
+
+const Detail: FC<{ name: string, value: string, href?: string, mobileFriendly?: boolean }> = ({ name, value, href, mobileFriendly }) => {
+    return (
+        <DetailPart $mobileFriendly={mobileFriendly}>
+            <span>{name}</span>
+            <Filler $mobileFriendly={mobileFriendly}>.........................................................................</Filler>
+            {href ? <a href={href} target="_blank">{value}</a> : <span>{value}</span>}
+        </DetailPart>
+    )
+}
+
 const Introduction: FC = () => {
     return (
         <SectionContainer name="Introduction" style={Wrapper}>
             <InfoContainer>
                 <Name>Antonio Fran Štignjedec</Name>
                 <DetailContainer>
-                    <Detail>
-                        <span>E-Mail</span>
-                        <a href="mailto:antony@antony.red">antony@antony.red</a>
-                    </Detail>
-                    <Detail>
-                        <span>Linked In</span>
-                        <a href="https://linkedin.com/in/antony1060" target="_blank">/in/antony1060</a>
-                    </Detail>
-                    <Detail>
-                        <span>GitHub</span>
-                        <a href="https://github.com/antony1060" target="_blank">Antony1060</a>
-                    </Detail>
-                    <Detail>
-                        <span>Twitter</span>
-                        <a href="https://twitter.com/@AntonyThe1060" target="_blank">@AntonyThe1060</a>
-                    </Detail>
+                    <Detail name="E-Mail" value="antony@antony.red" href="mailto:antony@antony.red" />
+                    <Detail name="Linked In" value="/in/antony1060" href="https://linkedin.com/in/antony1060" />
+                    <Detail name="GitHub" value="Antony1060" href="https://github.com/antony1060" />
+                    <Detail name="Twitter" value="@AntonyThe1060" href="https://twitter.com/@AntonyThe1060" />
                 </DetailContainer>
             </InfoContainer>
             <InfoContainer>
                 <Name>Languages</Name>
                 <DetailContainer>
-                    <Detail $mobileFriendly>
-                        <span>English</span>
-                        <span>Full professional proficiency</span>
-                    </Detail>
-                    <Detail $mobileFriendly>
-                        <span>Croatian</span>
-                        <span>Native proficiency</span>
-                    </Detail>
-                    <Detail $mobileFriendly>
-                        <span>German</span>
-                        <span>Limited working proficiency</span>
-                    </Detail>
+                    <Detail mobileFriendly name="English" value="Full professional proficiency" />
+                    <Detail mobileFriendly name="Croatian" value="Native proficiency" />
+                    <Detail mobileFriendly name="German" value="Limited working proficiency" />
                 </DetailContainer>
             </InfoContainer>
         </SectionContainer>
