@@ -70,8 +70,6 @@ const Navbar: FC = () => {
                     <NavbarLink href="https://antony.wiki" hideOnPortrait>Resume</NavbarLink>
                     <NavbarLink href="https://antony.cloud">Blog</NavbarLink>
                     <NavbarLink href="https://antony.contact">Contact</NavbarLink>
-                    <NavbarLink href="https://antony.domains" hideOnMobile>Domains</NavbarLink>
-                    <NavbarLink href="https://antony.cash" hideOnMobile>Donate</NavbarLink>
                 </LinksContainer>
             </NavbarContent>
             <Divider />

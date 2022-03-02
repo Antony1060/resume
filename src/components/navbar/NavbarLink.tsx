@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler } from "react";
 import styled from "styled-components";
 
-const Link = styled.a<{ $hideOnMobile: boolean, $hideOnPortrait: boolean }>`
+const Link = styled.a<{ $hideOnPortrait: boolean }>`
     display: flex;
     text-decoration: none;
     color: gray;
@@ -19,12 +19,6 @@ const Link = styled.a<{ $hideOnMobile: boolean, $hideOnPortrait: boolean }>`
         color: white;
     }
 
-    ${p => p.$hideOnMobile ? `
-        @media (max-width: 750px) {
-            display: none;
-        }
-    ` : ""}
-
     ${p => p.$hideOnPortrait ? `
         @media (max-width: 550px) {
             display: none;
@@ -39,7 +33,7 @@ const NavbarLink: FC<{ href: string, hideOnMobile?: boolean, hideOnPortrait?: bo
     }
 
     return (
-        <Link href={href} $hideOnMobile={hideOnMobile} $hideOnPortrait={hideOnPortrait} onClick={onClick}>
+        <Link href={href} $hideOnPortrait={hideOnPortrait} onClick={onClick}>
             <span>./</span>
             <span>{ children }</span>
         </Link>
