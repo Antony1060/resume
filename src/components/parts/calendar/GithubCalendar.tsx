@@ -23,16 +23,9 @@ const Container = styled.div`
 `;
 
 const Calendar = styled(SectionWrapper)`
-    display: flex;
-    justify-content: right;
-    gap: 4px;
-    overflow: hidden;
-    text-align: center;
     min-height: 100px;
-
-    div:first-child {
-        align-self: end;
-    }
+    display: flex;
+    text-align: center;
 `;
 
 const CalendarWeek = styled.div`
@@ -40,6 +33,17 @@ const CalendarWeek = styled.div`
     flex-direction: column;
     gap: 4px;
 `;
+
+const PaddingContainer = styled.div`
+    display: flex;
+    justify-content: right;
+    gap: 4px;
+    overflow: hidden;
+    
+    div:first-child {
+        align-self: end;
+    }
+`
 
 const GithubCalendar: FC = () => {
     const [ data, setData ] = useState<ContributionWeek[]>([]);
@@ -64,11 +68,13 @@ const GithubCalendar: FC = () => {
         <Container className="nojs-disable">
             <SectionContainer name="Contributions in the past year" after={total > 0 ? `${total}` : undefined} fit={!!data.length} style={Calendar}>
                 {!data.length ? <span style={{ textAlign: "center", width: "100%", alignSelf: "center" }}>Loading data...</span> :
-                    data.map((week, i) =>
-                        <CalendarWeek key={i}>
-                            {week.contributionDays.map(day => <CalendarDay day={day} key={day.date.toISOString()} />)}
-                        </CalendarWeek>
-                    )
+                    <PaddingContainer>
+                        {data.map((week, i) =>
+                            <CalendarWeek key={i}>
+                                {week.contributionDays.map(day => <CalendarDay day={day} key={day.date.toISOString()} />)}
+                            </CalendarWeek>
+                        )}
+                    </PaddingContainer>
                 }
             </SectionContainer>
         </Container>
