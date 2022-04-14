@@ -66,7 +66,7 @@ const Bullet = styled.span`
 
 const Timeline: FC = () => {
     return (
-        <SectionContainer name="Timeline" style={Wrapper} after={<WhiteLink href="https://linkedin.com/in/antony1060" target="_blank"><Linkedin size={20} /></WhiteLink>}>
+        <SectionContainer name="Timeline" style={Wrapper} after={<WhiteLink aria-label="LinkedIn Icon" href="https://linkedin.com/in/antony1060" target="_blank"><Linkedin size={20} /></WhiteLink>}>
             {Experiences.map(it =>
                 <Entry $active={!it.end} key={(it.company ?? "") + it.title}>
                     <Detail>

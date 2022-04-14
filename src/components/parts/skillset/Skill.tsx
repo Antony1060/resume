@@ -31,7 +31,7 @@ const Skill: FC<{ name: string, icon: string, imgHeight?: number }> = ({ name, i
     return (
         <Container imgHeight={imgHeight}>
             <div>
-                <img src={icon} alt={name} />
+                <img src={icon} alt={name} height={`${2 * 16}px`} width="50px" />
             </div>
             <span>{name}</span>
         </Container>

@@ -23,7 +23,7 @@ const Wrapper = styled(SectionWrapper)`
 
 const Repositories: FC = () => {
     return (
-        <SectionContainer name="Repositories" style={Wrapper} after={<WhiteLink href="https://github.com/antony1060" target="_blank"><GitHub size={20} /></WhiteLink>}>
+        <SectionContainer name="Repositories" style={Wrapper} after={<WhiteLink aria-label="GitHub Icon" href="https://github.com/antony1060" target="_blank"><GitHub size={20} /></WhiteLink>}>
             {Repos.map(it => <RepoCard repo={it} key={it.name} />)}
         </SectionContainer>
     )
