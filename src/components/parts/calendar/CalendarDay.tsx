@@ -77,7 +77,7 @@ const CalendarDay: FC<{ day: ContributionWeek["contributionDays"][number] }> = (
 
     return (
         <Container level={day.contributionLevel} key={day.date.toISOString()}>
-            <DayHover ref={ref} $flipY={day.weekday < 2}>
+            <DayHover ref={ref} $flipY={day.weekday < 3}>
                 <b>{day.contributionCount} {day.contributionCount === 1 ? "contribution" : "contributions"}</b>&nbsp;on {format(day.date)}
             </DayHover>
         </Container>
