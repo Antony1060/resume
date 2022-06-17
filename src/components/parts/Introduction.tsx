@@ -106,7 +106,7 @@ const Introduction: FC = () => {
                     <Detail name="E-Mail" value="antony@antony.red" href="mailto:antony@antony.red" />
                     <Detail name="Linked In" value="/in/antony1060" href="https://linkedin.com/in/antony1060" />
                     <Detail name="GitHub" value="Antony1060" href="https://github.com/antony1060" />
-                    <Detail name="Twitter" value="@AntonyThe1060" href="https://twitter.com/@AntonyThe1060" />
+                    <Detail name="Twitter" value="@AntonyThe1060" href="https://twitter.com/AntonyThe1060" />
                 </DetailContainer>
             </InfoContainer>
             <InfoContainer>
