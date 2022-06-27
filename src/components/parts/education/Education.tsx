@@ -90,7 +90,7 @@ const Education: FC = () => {
                         name: "XIII. Gymnasium",
                         location: "Zagreb, Croatia",
                         years: 4,
-                        progress: Percent(70)
+                        progress: Percent(75)
                     }}
                 />
                 <Connector status="future" />
