@@ -41,7 +41,7 @@ export const Experiences: Experience[] = ([
         type: "part-time",
         logo: "https://media.antony.red/v3x_logo.png",
         location: "remote",
-        start: monthFromSimple("Oct", 2022),
+        start: monthFromSimple("Dec", 2021),
         title: "Research & Development engineer"
     },
     {
