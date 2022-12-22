@@ -15,9 +15,13 @@ const Container = styled.div`
 
 export type EducationStatus = "passed" | "active" | "future";
 
-const Connector = styled.div<{ status: EducationStatus }>`
+const Connector = styled.div<{ status: EducationStatus, $squish?: boolean }>`
     height: 10px;
-    flex-grow: 1;
+    ${({ $squish }) => !$squish ? `
+        flex-grow: 1;
+    ` : `
+        width: 8rem;
+    `}
     margin: 0 -10px;
     background-color: ${({ status }) => status === "passed" ? "#3f5c96" : status === "active" ? "#55e480" : "#272b33"};
     position: relative;
@@ -75,6 +79,7 @@ const Education: FC = () => {
                 <EducationPoint
                     status="passed"
                     description="Elementary education"
+                    descriptionAlignment="left"
                     detail={{
                         name: "OŠ Malešnica",
                         location: "Zagreb, Croatia",
@@ -90,14 +95,60 @@ const Education: FC = () => {
                         name: "XIII. Gymnasium",
                         location: "Zagreb, Croatia",
                         years: 4,
-                        progress: Percent(80)
+                        progress: Percent(85)
                     }}
                 />
                 <Connector status="future" />
                 <EducationPoint
                     status="future"
                     description="College"
+                    descriptionAlignment="right"
+                    detail={{
+                        name: "Algebra University College",
+                        location: "Zagreb, Croatia",
+                        years: 3,
+                        degree: "Bachelors",
+                        progress: Percent(0)
+                    }}
                 />
+                {/*
+                <EducationPoint
+                    status="future"
+                    description="Beachelors"
+                    detail={{
+                        name: "Algebra University College",
+                        location: "Zagreb, Croatia",
+                        years: 3,
+                        degree: "Bachelors",
+                        progress: Percent(0)
+                    }}
+                />
+                <Connector status="future" $squish />
+                <EducationPoint
+                    status="future"
+                    description="Masters"
+                    detail={{
+                        name: "Algebra University College",
+                        location: "Zagreb, Croatia",
+                        years: 2,
+                        degree: "Masters",
+                        progress: Percent(0)
+                    }}
+                />
+                <Connector status="future" $squish />
+                <EducationPoint
+                    status="future"
+                    description="PhD"
+                    descriptionAlignment="right"
+                    detail={{
+                        name: "FER (Zagreb Universities)",
+                        location: "Zagreb, Croatia",
+                        years: 2,
+                        degree: "PhD",
+                        progress: Percent(0)
+                    }}
+                />
+                */}
             </Container>
         </SectionContainer>
     )

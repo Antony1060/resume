@@ -75,18 +75,20 @@ const RadarEffect = styled.div`
     pointer-events: none;
 `;
 
+type Alignment = "left" | "center" | "right"
+
 // education level here conveniently corresponds to the point position lol
-const Description = styled.div<{ status: EducationStatus }>`
+const Description = styled.div<{ alignment: Alignment }>`
     position: absolute;
     top: calc(100% + 8px);
     width: max-content;
     opacity: 0.6;
     pointer-events: none;
-    ${({ status }) => status === "active" ? `
+    ${({ alignment }) => alignment === "center" ? `
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
-    ` : status === "passed" ? `
+    ` : alignment === "left" ? `
         left: 0;
         text-align: left;
 
@@ -110,6 +112,11 @@ const DetailTitle = styled.span`
     flex-direction: column;
     gap: 0.2rem;
 `;
+
+const Degree = styled.span`
+    font-size: 0.9rem;
+    opacity: 0.8;
+`
 
 const Location = styled.span`
     font-size: 0.8rem;
@@ -150,16 +157,24 @@ type EducationDetail = {
     name: string,
     location: string,
     years: number,
-    progress: number
+    degree?: "Bachelors" | "Masters" | "PhD"
+    progress: number,
 }
 
-const EducationPoint: FC<{ status: EducationStatus, description: string, detail?: EducationDetail }> = ({ status, description, detail }) => {
-    const progressPercent = detail ? detail?.progress * 100 : undefined;
+type EducationPointProps = {
+    status: EducationStatus,
+    description: string,
+    detail?: EducationDetail,
+    descriptionAlignment?: Alignment
+}
+
+const EducationPoint: FC<EducationPointProps> = ({ status, description, detail, descriptionAlignment }) => {
+    const progressPercent = detail ? detail.progress * 100 : undefined;
 
     return (
         <Container status={status}>
             {status === "active" && <RadarEffect />}
-            <Description status={status}>{description}</Description>
+            <Description alignment={descriptionAlignment ?? "center"}>{description}</Description>
             <Detail status={status}>
                 {!detail || !progressPercent ?
                     <span style={{ padding: "0.6rem", textAlign: "center", fontSize: "1rem" }}>Unknown so far...</span>
@@ -167,10 +182,14 @@ const EducationPoint: FC<{ status: EducationStatus, description: string, detail?
                     <>
                         <DetailTitle>
                             <span>{detail.name}</span>
+                            {detail.degree && <Degree>{detail.degree}</Degree>}
                             <Location>{detail.location}</Location>
                         </DetailTitle>
                         <DetailContent>
-                            <span><ProgressIndicator>{progressPercent !== 100 ? progressPercent + "% done" : "Completed"} </ProgressIndicator>{detail.years} years</span>
+                            <div>
+                                <ProgressIndicator>{progressPercent !== 100 ? progressPercent + "% done" : "Completed"} </ProgressIndicator>
+                                <span>{detail.years} years</span>
+                            </div>
                             <Progress>
                                 <ProgressBar value={progressPercent} />
                             </Progress>
