@@ -18,15 +18,6 @@ const Entry = styled.div<{ $active: boolean }>`
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-
-    img {
-        height: 3.4rem;
-        border-radius: 4px;
-
-        @media (max-width: 600px) {
-            display: none;
-        }
-    }
 `;
 
 const Detail = styled.div`
@@ -64,6 +55,15 @@ const Bullet = styled.span`
     }
 `
 
+const CompanyLogo = styled.img`
+    width: 3.4rem;
+    border-radius: 4px;
+    
+    @media (max-width: 600px) {
+        display: none;
+    }
+`
+
 const Timeline: FC = () => {
     return (
         <SectionContainer name="Timeline" style={Wrapper} after={<WhiteLink aria-label="LinkedIn Icon" href="https://linkedin.com/in/antony1060" target="_blank"><Linkedin size={20} /></WhiteLink>}>
@@ -84,7 +84,7 @@ const Timeline: FC = () => {
                             <span>{formatDiff(diffDates(it.start, it.end ?? new Date()))}</span>
                         </SubDetail>
                     </Detail>
-                    {it.logo && <img src={it.logo} alt={(it.company ?? "") + " logo"} />}
+                    {it.logo && <CompanyLogo src={it.logo} alt={(it.company ?? "") + " logo"} />}
                 </Entry>
             )}
         </SectionContainer>
