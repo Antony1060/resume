@@ -31,18 +31,18 @@ export const formatDiff = (diff: Diff) => {
 
 export const Experiences: Experience[] = ([
     {
-        type: "self-employed",
-        location: "Sveta Nedelja, Croatia",
-        start: monthFromSimple("Oct", 2019),
-        title: "Independent Consultant"
-    },
-    {
         company: "V3X Labs",
         type: "part-time",
         logo: "https://media.antony.red/v3x_logo.png",
         location: "remote",
         start: monthFromSimple("Dec", 2021),
         title: "Research & Development engineer"
+    },
+    {
+        type: "self-employed",
+        location: "Sveta Nedelja, Croatia",
+        start: monthFromSimple("Oct", 2019),
+        title: "Independent Consultant"
     },
     {
         company: "SimpliServers",
