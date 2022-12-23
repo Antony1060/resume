@@ -29,29 +29,30 @@ export const formatDiff = (diff: Diff) => {
     return `${diff.years} yrs, ${diff.months} mos`;
 }
 
-export const Experiences: Experience[] = ([
-    {
-        company: "V3X Labs",
-        type: "part-time",
-        logo: "https://media.antony.red/v3x_logo.png",
-        location: "remote",
-        start: monthFromSimple("Dec", 2021),
-        title: "Research & Development engineer"
-    },
-    {
-        type: "self-employed",
-        location: "Sveta Nedelja, Croatia",
-        start: monthFromSimple("Oct", 2019),
-        title: "Independent Consultant"
-    },
-    {
-        company: "SimpliServers",
-        logo: "https://media.antony.red/simpliservers.png",
-        type: "contract",
-        location: "remote",
-        start: monthFromSimple("May", 2021),
-        end: monthFromSimple("Oct", 2021),
-        title: "System Administrator and Developer"
-    }
-] as Experience[])
-    .sort((a, b) => b.start.getTime() - a.start.getTime()).sort((a) => a.end ? 1 : -1);
+export const Experiences: Experience[] = (() => ([
+        {
+            company: "V3X Labs",
+            type: "part-time",
+            logo: "https://media.antony.red/v3x_logo.png",
+            location: "remote",
+            start: monthFromSimple("Dec", 2021),
+            title: "Research & Development engineer"
+        },
+        {
+            type: "self-employed",
+            location: "Sveta Nedelja, Croatia",
+            start: monthFromSimple("Oct", 2019),
+            title: "Independent Consultant"
+        },
+        {
+            company: "SimpliServers",
+            logo: "https://media.antony.red/simpliservers.png",
+            type: "contract",
+            location: "remote",
+            start: monthFromSimple("May", 2021),
+            end: monthFromSimple("Oct", 2021),
+            title: "System Administrator and Developer"
+        }
+    ] as Experience[])
+        .sort((a, b) => b.start.getTime() - a.start.getTime()).sort((a) => a.end ? 1 : -1)
+)()
