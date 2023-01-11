@@ -35,14 +35,14 @@ export const Repos: [Repo, Repo, Repo, Repo, Repo, Repo] = [{
     part: "creator"
 }, {
     name: "logger",
-    org: "lvkdotsh",
+    org: "v3xlabs",
     description: "Zero dependency, light-weight, blazing fast customizable logging library.",
     language: "TypeScript",
     type: "library",
     part: "contributor"
 }, {
     name: "scyllo",
-    org: "lvkdotsh",
+    org: "v3xlabs",
     description: "The Cassandra/Scylla library you didn't want but got anyways.",
     language: "TypeScript",
     type: "library",
