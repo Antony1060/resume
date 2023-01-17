@@ -34,6 +34,19 @@ export const Repos: [Repo, Repo, Repo, Repo, Repo, Repo] = [{
     link: "https://antony.cloud",
     part: "creator"
 }, {
+    name: "cloudflare-domain-info",
+    description: "An API for getting and checking all domains registered with a Cloudflare account.",
+    language: "TypeScript",
+    type: null,
+    part: "creator"
+}, {
+    name: "permissio",
+    org: "v3xlabs",
+    description: "something with permissions ig - compact bigint bitfield permission library for node.js ",
+    language: "TypeScript",
+    type: "library",
+    part: "contributor"
+}, {
     name: "logger",
     org: "v3xlabs",
     description: "Zero dependency, light-weight, blazing fast customizable logging library.",
@@ -47,16 +60,4 @@ export const Repos: [Repo, Repo, Repo, Repo, Repo, Repo] = [{
     language: "TypeScript",
     type: "library",
     part: "contributor"
-}, {
-    name: "cloudflare-domain-info",
-    description: "An API for getting and checking all domains registered with a Cloudflare account.",
-    language: "TypeScript",
-    type: null,
-    part: "creator"
-}, {
-    name: "Fuckcors",
-    description: "The app you always needed. No need to worry about pesky CORS rules anymore.",
-    language: "TypeScript",
-    type: null,
-    part: "creator"
 }];
