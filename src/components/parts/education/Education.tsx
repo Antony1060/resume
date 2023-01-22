@@ -111,44 +111,6 @@ const Education: FC = () => {
                         progress: Percent(0)
                     }}
                 />
-                {/*
-                <EducationPoint
-                    status="future"
-                    description="Beachelors"
-                    detail={{
-                        name: "Algebra University College",
-                        location: "Zagreb, Croatia",
-                        years: 3,
-                        degree: "Bachelors",
-                        progress: Percent(0)
-                    }}
-                />
-                <Connector status="future" $squish />
-                <EducationPoint
-                    status="future"
-                    description="Masters"
-                    detail={{
-                        name: "Algebra University College",
-                        location: "Zagreb, Croatia",
-                        years: 2,
-                        degree: "Masters",
-                        progress: Percent(0)
-                    }}
-                />
-                <Connector status="future" $squish />
-                <EducationPoint
-                    status="future"
-                    description="PhD"
-                    descriptionAlignment="right"
-                    detail={{
-                        name: "FER (Zagreb Universities)",
-                        location: "Zagreb, Croatia",
-                        years: 2,
-                        degree: "PhD",
-                        progress: Percent(0)
-                    }}
-                />
-                */}
             </Container>
         </SectionContainer>
     )
