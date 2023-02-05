@@ -67,7 +67,6 @@ const CompanyLogo = styled.img`
 const Timeline: FC = () => {
     return (
         <SectionContainer name="Timeline" style={Wrapper} after={<WhiteLink aria-label="LinkedIn Icon" href="https://linkedin.com/in/antony1060" target="_blank"><Linkedin size={20} /></WhiteLink>}>
-            {(() => { console.log(Experiences); return <div></div> })()}
             {Experiences.map(it =>
                 <Entry $active={!it.end} key={(it.company ?? "") + it.title}>
                     <Detail>
