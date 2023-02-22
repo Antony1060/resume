@@ -18,13 +18,13 @@ import YarnLogo from "/images/yarn.svg";
 import GradleLogo from "/images/gradle.svg";
 import DockerLogo from "/images/docker.webp";
 import BashLogo from "/images/bash.svg";
-import ParcelLogo from "/images/parcel.webp";
+import ViteLogo from "/images/vite.svg";
 import ReactLogo from "/images/react.svg";
-import VueLogo from "/images/vue.webp";
 import SvelteLogo from "/images/svelte.svg";
 import KubernetesLogo from "/images/kubernetes.svg";
 import NodeLogo from "/images/nodejs.webp";
 import SassLogo from "/images/sass.webp";
+import TailwindCSS from "/images/tailwindcss.svg"
 
 const Wrapper = styled(SectionWrapper)`
     padding-top: 1.6rem;
@@ -116,27 +116,27 @@ const Skillset: FC = () => {
         <SectionContainer name="Skill set" style={Wrapper}>
             <SectionContainer name="Technologies" style={SubWrapperFirst}>
                 <Skill name="React" icon={ReactLogo} />
-                <Skill name="Vue" icon={VueLogo} />
                 <Skill name="Svelte" icon={SvelteLogo} />
-                <Skill name="Kubernetes" icon={KubernetesLogo} imgHeight={1.8} />
-                <Skill name="NodeJS" icon={NodeLogo} imgHeight={1.8} />
                 <Skill name="SCSS" icon={SassLogo} imgHeight={1.6} />
+                <Skill name="TailwindCSS" icon={TailwindCSS} imgHeight={1.2} />
+                <Skill name="NodeJS" icon={NodeLogo} imgHeight={1.8} />
+                <Skill name="Kubernetes" icon={KubernetesLogo} imgHeight={1.8} />
             </SectionContainer>
             <SectionContainer name="Tools" style={SubWrapperSecond}>
                 <Skill name="Git" icon={GitLogo} imgHeight={1.6} />
+                <Skill name="Docker" icon={DockerLogo} imgHeight={1.4} />
                 <Skill name="Yarn" icon={YarnLogo} imgHeight={1.8} />
                 <Skill name="Gradle" icon={GradleLogo} imgHeight={1.4} />
-                <Skill name="Docker" icon={DockerLogo} imgHeight={1.4} />
+                <Skill name="Vite" icon={ViteLogo} imgHeight={1.6} />
                 <Skill name="Bash" icon={BashLogo} imgHeight={2} />
-                <Skill name="Parcel" icon={ParcelLogo} imgHeight={1.6} />
             </SectionContainer>
             <SectionContainer name="Languages" style={SubWrapperThird}>
                 <Skill name="JavaScript" icon={JsLogo} />
                 <Skill name="TypeScript" icon={TsLogo} />
                 <Skill name="Java" icon={JavaLogo} />
                 <Skill name="Kotlin" icon={KotlinLogo} />
-                <Skill name="Python" icon={PythonLogo} />
                 <Skill name="Go" icon={GoLogo} />
+                <Skill name="Python" icon={PythonLogo} />
             </SectionContainer>
             <SectionContainer name="Databases" style={SubWrapperFourth}>
                 <Skill name="MySQL" icon={MySqlLogo} imgHeight={1.6} />
