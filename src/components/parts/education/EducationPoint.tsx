@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled, { keyframes } from "styled-components";
+import { isNullish } from "../../../lib/functions";
 import { EducationStatus } from "./Education";
 
 const Detail = styled.div<{ status: EducationStatus }>`
@@ -20,7 +21,7 @@ const Detail = styled.div<{ status: EducationStatus }>`
     pointer-events: none;
 
     @media (max-width: 950px) {
-        left: ${({ status }) => status === "passed" ? "100%" : status === "future" ? "0" : "50%"};
+        left: ${({ status }) => status === "passed" ? "100%" : status === "future" ? "-100%" : "50%"};
     }
 `;
 
@@ -165,10 +166,11 @@ type EducationPointProps = {
     status: EducationStatus,
     description: string,
     detail?: EducationDetail,
-    descriptionAlignment?: Alignment
+    descriptionAlignment?: Alignment,
+    uncertaint?: boolean
 }
 
-const EducationPoint: FC<EducationPointProps> = ({ status, description, detail, descriptionAlignment }) => {
+const EducationPoint: FC<EducationPointProps> = ({ status, description, detail, descriptionAlignment, uncertaint }) => {
     const progressPercent = detail ? detail.progress * 100 : undefined;
 
     return (
@@ -176,7 +178,7 @@ const EducationPoint: FC<EducationPointProps> = ({ status, description, detail, 
             {status === "active" && <RadarEffect />}
             <Description alignment={descriptionAlignment ?? "center"}>{description}</Description>
             <Detail status={status}>
-                {!detail || !progressPercent ?
+                {!detail || isNullish(progressPercent) || uncertaint ?
                     <span style={{ padding: "0.6rem", textAlign: "center", fontSize: "1rem" }}>Unknown so far...</span>
                 :
                     <>

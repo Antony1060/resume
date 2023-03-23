@@ -95,7 +95,7 @@ const Education: FC = () => {
                         name: "XIII. Gymnasium",
                         location: "Zagreb, Croatia",
                         years: 4,
-                        progress: Percent(85)
+                        progress: Percent(90)
                     }}
                 />
                 <Connector status="future" />
@@ -103,6 +103,7 @@ const Education: FC = () => {
                     status="future"
                     description="College"
                     descriptionAlignment="right"
+                    uncertaint={true}
                     detail={{
                         name: "Algebra University College",
                         location: "Zagreb, Croatia",
