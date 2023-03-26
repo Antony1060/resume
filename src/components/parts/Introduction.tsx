@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
+
 import SectionContainer, { SectionWrapper } from "../elements/SectionContainer";
 
 const Wrapper = styled(SectionWrapper)`
@@ -10,7 +11,7 @@ const Wrapper = styled(SectionWrapper)`
     @media (max-width: 900px) {
         grid-template-columns: minmax(0, 1fr);
     }
-`
+`;
 
 const InfoContainer = styled.div`
     background-color: #0d1117;
@@ -20,8 +21,9 @@ const InfoContainer = styled.div`
     padding: 1rem 0;
     gap: 1rem;
     font-size: 1.1rem;
-    
-    &, * {
+
+    &,
+    * {
         font-family: "JetBrains Mono", monospace;
     }
 `;
@@ -53,7 +55,8 @@ const DetailPart = styled.span<{ $mobileFriendly?: boolean }>`
         flex-shrink: 0;
     }
 
-    span:last-child, a {
+    span:last-child,
+    a {
         color: #ffd173;
         font-weight: 200;
         flex-shrink: 0;
@@ -67,35 +70,54 @@ const DetailPart = styled.span<{ $mobileFriendly?: boolean }>`
         }
     }
 
-    ${({ $mobileFriendly }) => $mobileFriendly ? `
+    ${({ $mobileFriendly }) =>
+        $mobileFriendly
+            ? `
         @media (max-width: 500px) {
             flex-direction: column;
             gap: 0.4rem;
         }
-    `: ""}
+    `
+            : ""}
 `;
 
 const Filler = styled.span<{ $mobileFriendly?: boolean }>`
     overflow: hidden;
     white-space: nowrap;
     opacity: 0.2;
-    
-    ${({ $mobileFriendly }) => $mobileFriendly ? `
+
+    ${({ $mobileFriendly }) =>
+        $mobileFriendly
+            ? `
         @media (max-width: 500px) {
             display: none;
         }
-    `: ""}
-`
+    `
+            : ""}
+`;
 
-const Detail: FC<{ name: string, value: string, href?: string, mobileFriendly?: boolean }> = ({ name, value, href, mobileFriendly }) => {
+const Detail: FC<{ name: string; value: string; href?: string; mobileFriendly?: boolean }> = ({
+    name,
+    value,
+    href,
+    mobileFriendly,
+}) => {
     return (
         <DetailPart $mobileFriendly={mobileFriendly}>
             <span>{name}</span>
-            <Filler $mobileFriendly={mobileFriendly}>.........................................................................</Filler>
-            {href ? <a href={href} target="_blank">{value}</a> : <span>{value}</span>}
+            <Filler $mobileFriendly={mobileFriendly}>
+                ................................................................
+            </Filler>
+            {href ? (
+                <a href={href} target="_blank" rel="noreferrer">
+                    {value}
+                </a>
+            ) : (
+                <span>{value}</span>
+            )}
         </DetailPart>
-    )
-}
+    );
+};
 
 const Introduction: FC = () => {
     return (
@@ -103,10 +125,22 @@ const Introduction: FC = () => {
             <InfoContainer>
                 <Name>Antonio Fran Štignjedec</Name>
                 <DetailContainer>
-                    <Detail name="E-Mail" value="antony@antony.red" href="mailto:antony@antony.red" />
-                    <Detail name="Linked In" value="/in/antony1060" href="https://linkedin.com/in/antony1060" />
+                    <Detail
+                        name="E-Mail"
+                        value="antony@antony.red"
+                        href="mailto:antony@antony.red"
+                    />
+                    <Detail
+                        name="Linked In"
+                        value="/in/antony1060"
+                        href="https://linkedin.com/in/antony1060"
+                    />
                     <Detail name="GitHub" value="Antony1060" href="https://github.com/antony1060" />
-                    <Detail name="Twitter" value="@AntonyThe1060" href="https://twitter.com/AntonyThe1060" />
+                    <Detail
+                        name="Twitter"
+                        value="@AntonyThe1060"
+                        href="https://twitter.com/AntonyThe1060"
+                    />
                 </DetailContainer>
             </InfoContainer>
             <InfoContainer>
@@ -118,7 +152,7 @@ const Introduction: FC = () => {
                 </DetailContainer>
             </InfoContainer>
         </SectionContainer>
-    )
-}
+    );
+};
 
 export default Introduction;

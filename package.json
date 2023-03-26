@@ -1,37 +1,39 @@
 {
     "name": "resume",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
+    "type": "module",
     "scripts": {
         "prepare": "husky install",
         "dev": "VITE_COMMIT_REF=$(git show -s --format=%h) vite --host",
-        "build": "export VITE_COMMIT_REF=$(git show -s --format=%h) && vite build --outDir dist/static && vite build --ssr src/server-render.tsx --outDir dist/server && node prerender",
+        "fix-styled-components-in-pre-render": "sed -E -i 's/;import ([a-zA-Z_]+),(.+)from\"styled-components\";/;import \\1fixed,\\2from\"styled-components\";const \\1 = \\1fixed.default;/g' dist/server/server-render.js",
+        "build": "export VITE_COMMIT_REF=$(git show -s --format=%h) && vite build --outDir dist/static && vite build --ssr src/server-render.tsx --outDir dist/server && pnpm fix-styled-components-in-pre-render && node prerender.js",
         "prebuild": "rm -rf dist/static",
         "preview": "vite preview",
-        "lint": "eslint -c .eslintrc.json --ext .ts ./src"
+        "lint": "eslint -c .eslintrc.json --ext .ts,.tsx ./src"
     },
     "dependencies": {
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "axios": "^1.3.4",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-feather": "^2.0.10",
+        "styled-components": "5.3.9",
+        "use-debounce": "^9.0.3"
     },
     "devDependencies": {
         "@types/debounce": "^1.2.1",
-        "@types/react": "^17.0.33",
-        "@types/react-dom": "^17.0.10",
-        "@types/styled-components": "^5.1.23",
+        "@types/react": "^18.0.29",
+        "@types/react-dom": "^18.0.11",
+        "@types/styled-components": "^5.1.26",
         "@typescript-eslint/parser": "^5.56.0",
-        "@vitejs/plugin-react": "^1.0.7",
-        "axios": "^0.26.0",
-        "debounce": "^1.2.1",
+        "@vitejs/plugin-react": "^3.1.0",
         "eslint": "^8.36.0",
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-v3xlabs": "^1.6.0",
         "husky": "^8.0.3",
         "prettier": "^2.8.7",
-        "react-feather": "^2.0.9",
-        "styled-components": "^5.3.3",
-        "typescript": "^4.9.5",
-        "vite": "^2.8.0",
+        "typescript": "^5.0.2",
+        "vite": "^4.2.1",
         "vite-plugin-compression": "^0.5.1"
     }
 }

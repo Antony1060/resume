@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
+
 import NavbarLink from "./NavbarLink";
 
 const NavbarContainer = styled.div`
@@ -21,7 +22,7 @@ const NavbarContent = styled.div`
     flex-wrap: wrap;
     padding: 0 1rem;
     gap: 1rem;
-`
+`;
 
 const HomeLink = styled.a`
     color: white;
@@ -30,7 +31,7 @@ const HomeLink = styled.a`
     &:hover {
         text-decoration: underline;
     }
-`
+`;
 
 const Logo = styled.div`
     font-size: 1.4rem;
@@ -38,7 +39,7 @@ const Logo = styled.div`
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
-`
+`;
 
 const LinksContainer = styled.div`
     display: flex;
@@ -50,31 +51,37 @@ const LinksContainer = styled.div`
     @media (max-width: 500px) {
         gap: 1rem;
     }
-`
+`;
 
 const Divider = styled.div`
     width: 100%;
     height: 2px;
     background: linear-gradient(0.25turn, #0a0d13, #f0f0f0 10%, #f0f0f0 90%, #0a0d13);
-`
+`;
 
 const Navbar: FC = () => {
     return (
         <NavbarContainer>
             <NavbarContent>
                 <Logo>
-                    <img style={{ width: "2rem" }} src="https://media.antony.red/logoTransparent.png" alt="Logo" />
+                    <img
+                        style={{ width: "2rem" }}
+                        src="https://media.antony.red/logoTransparent.png"
+                        alt="Logo"
+                    />
                     <HomeLink href="/">~/resume</HomeLink>
                 </Logo>
                 <LinksContainer>
-                    <NavbarLink href="https://antony.wiki" hideOnPortrait>Resume</NavbarLink>
+                    <NavbarLink href="https://antony.wiki" hideOnPortrait>
+                        Resume
+                    </NavbarLink>
                     <NavbarLink href="https://antony.cloud">Blog</NavbarLink>
                     <NavbarLink href="https://antony.contact">Contact</NavbarLink>
                 </LinksContainer>
             </NavbarContent>
             <Divider />
         </NavbarContainer>
-    )
-}
+    );
+};
 
 export default Navbar;

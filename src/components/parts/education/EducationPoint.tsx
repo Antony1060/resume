@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled, { keyframes } from "styled-components";
+
 import { isNullish } from "../../../lib/functions";
 import { EducationStatus } from "./Education";
 
@@ -21,7 +22,8 @@ const Detail = styled.div<{ status: EducationStatus }>`
     pointer-events: none;
 
     @media (max-width: 950px) {
-        left: ${({ status }) => status === "passed" ? "100%" : status === "future" ? "-100%" : "50%"};
+        left: ${({ status }) =>
+            status === "passed" ? "100%" : status === "future" ? "-100%" : "50%"};
     }
 `;
 
@@ -36,14 +38,15 @@ const radarColor = keyframes`
 `;
 
 const Container = styled.div<{ status: EducationStatus }>`
-    background-color: ${({ status }) => status === "passed" ? "#3f5c96" : status === "active" ? "#29964a" : "#272b33"};
+    background-color: ${({ status }) =>
+        status === "passed" ? "#3f5c96" : status === "active" ? "#29964a" : "#272b33"};
     width: 25px;
     height: 25px;
     border-radius: 50%;
     z-index: 2;
     position: relative;
     animation: ${radarColor} 1.2s ease infinite;
-    ${({ status }) => status !== "active" ? "animation: none;" : ""}
+    ${({ status }) => (status !== "active" ? "animation: none;" : "")}
 
     &:hover ${Detail} {
         display: flex;
@@ -76,7 +79,7 @@ const RadarEffect = styled.div`
     pointer-events: none;
 `;
 
-type Alignment = "left" | "center" | "right"
+type Alignment = "left" | "center" | "right";
 
 // education level here conveniently corresponds to the point position lol
 const Description = styled.div<{ alignment: Alignment }>`
@@ -85,11 +88,15 @@ const Description = styled.div<{ alignment: Alignment }>`
     width: max-content;
     opacity: 0.6;
     pointer-events: none;
-    ${({ alignment }) => alignment === "center" ? `
+    ${({ alignment }) =>
+        alignment === "center"
+            ? `
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
-    ` : alignment === "left" ? `
+    `
+            : alignment === "left"
+            ? `
         left: 0;
         text-align: left;
 
@@ -99,7 +106,8 @@ const Description = styled.div<{ alignment: Alignment }>`
             text-align: center;
             width: fit-content;
         }
-    ` : `
+    `
+            : `
         right: 0;
         text-align: right;
     `};
@@ -117,12 +125,12 @@ const DetailTitle = styled.span`
 const Degree = styled.span`
     font-size: 0.9rem;
     opacity: 0.8;
-`
+`;
 
 const Location = styled.span`
     font-size: 0.8rem;
     opacity: 0.6;
-`
+`;
 
 const DetailContent = styled.div`
     padding: 0.6rem;
@@ -155,22 +163,28 @@ const ProgressIndicator = styled.span`
 `;
 
 type EducationDetail = {
-    name: string,
-    location: string,
-    years: number,
-    degree?: "Bachelors" | "Masters" | "PhD"
-    progress: number,
-}
+    name: string;
+    location: string;
+    years: number;
+    degree?: "Bachelors" | "Masters" | "PhD";
+    progress: number;
+};
 
-type EducationPointProps = {
-    status: EducationStatus,
-    description: string,
-    detail?: EducationDetail,
-    descriptionAlignment?: Alignment,
-    uncertaint?: boolean
-}
+type EducationPointProperties = {
+    status: EducationStatus;
+    description: string;
+    detail?: EducationDetail;
+    descriptionAlignment?: Alignment;
+    uncertaint?: boolean;
+};
 
-const EducationPoint: FC<EducationPointProps> = ({ status, description, detail, descriptionAlignment, uncertaint }) => {
+const EducationPoint: FC<EducationPointProperties> = ({
+    status,
+    description,
+    detail,
+    descriptionAlignment,
+    uncertaint,
+}) => {
     const progressPercent = detail ? detail.progress * 100 : undefined;
 
     return (
@@ -178,9 +192,11 @@ const EducationPoint: FC<EducationPointProps> = ({ status, description, detail, 
             {status === "active" && <RadarEffect />}
             <Description alignment={descriptionAlignment ?? "center"}>{description}</Description>
             <Detail status={status}>
-                {!detail || isNullish(progressPercent) || uncertaint ?
-                    <span style={{ padding: "0.6rem", textAlign: "center", fontSize: "1rem" }}>Unknown so far...</span>
-                :
+                {!detail || isNullish(progressPercent) || uncertaint ? (
+                    <span style={{ padding: "0.6rem", textAlign: "center", fontSize: "1rem" }}>
+                        Unknown so far...
+                    </span>
+                ) : (
                     <>
                         <DetailTitle>
                             <span>{detail.name}</span>
@@ -189,7 +205,11 @@ const EducationPoint: FC<EducationPointProps> = ({ status, description, detail, 
                         </DetailTitle>
                         <DetailContent>
                             <div>
-                                <ProgressIndicator>{progressPercent !== 100 ? progressPercent + "% done" : "Completed"} </ProgressIndicator>
+                                <ProgressIndicator>
+                                    {progressPercent !== 100
+                                        ? progressPercent + "% done"
+                                        : "Completed"}{" "}
+                                </ProgressIndicator>
                                 <span>{detail.years} years</span>
                             </div>
                             <Progress>
@@ -197,10 +217,10 @@ const EducationPoint: FC<EducationPointProps> = ({ status, description, detail, 
                             </Progress>
                         </DetailContent>
                     </>
-                }
+                )}
             </Detail>
         </Container>
-    )
-}
+    );
+};
 
 export default EducationPoint;

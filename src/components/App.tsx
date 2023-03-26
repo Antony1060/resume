@@ -1,11 +1,12 @@
-import styled, { createGlobalStyle } from 'styled-components'
-import Navbar from './navbar/Navbar'
-import GithubCalendar from './parts/calendar/GithubCalendar'
-import Education from './parts/education/Education'
-import Introduction from './parts/Introduction'
-import Repositories from './parts/repositories/Repositories'
-import Skillset from './parts/skillset/Skillset'
-import Timeline from './parts/timeline/Timeline'
+import styled, { createGlobalStyle } from "styled-components";
+
+import Navbar from "./navbar/Navbar";
+import GithubCalendar from "./parts/calendar/GithubCalendar";
+import Education from "./parts/education/Education";
+import Introduction from "./parts/Introduction";
+import Repositories from "./parts/repositories/Repositories";
+import Skillset from "./parts/skillset/Skillset";
+import Timeline from "./parts/timeline/Timeline";
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -28,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
         background-color: #0A0D13;
         color: white;
     }
-`
+`;
 
 const Container = styled.div`
     display: flex;
@@ -38,7 +39,7 @@ const Container = styled.div`
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 2rem;
-`
+`;
 
 const NavbarContainer = styled.div`
     display: flex;
@@ -50,7 +51,7 @@ const NavbarContainer = styled.div`
     gap: 2rem;
     padding: 2rem;
     text-align: start;
-`
+`;
 
 const Version = styled.a`
     text-decoration: none;
@@ -66,7 +67,7 @@ const Version = styled.a`
     @media print {
         display: none;
     }
-`
+`;
 
 const ContentContainer = styled.div`
     display: flex;
@@ -75,7 +76,7 @@ const ContentContainer = styled.div`
     max-width: 900px;
     padding: 1rem;
     gap: 3rem;
-`
+`;
 
 function App() {
     return (
@@ -96,11 +97,16 @@ function App() {
                 <Version
                     href="https://github.com/Antony1060/resume"
                     target="_blank"
-                    dangerouslySetInnerHTML={{ __html: "Version " + (import.meta.env.VITE_COMMIT_REF as string | undefined ?? "development") }}
+                    dangerouslySetInnerHTML={{
+                        __html:
+                            "Version " +
+                            ((import.meta.env.VITE_COMMIT_REF as string | undefined) ??
+                                "development"),
+                    }}
                 ></Version>
             </Container>
         </>
-    )
+    );
 }
 
-export default App
+export default App;

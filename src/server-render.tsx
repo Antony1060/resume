@@ -1,6 +1,7 @@
-import ReactDOMServer from "react-dom/server"
-import { ServerStyleSheet } from "styled-components"
-import App from "./components/App"
+import ReactDOMServer from "react-dom/server";
+import { ServerStyleSheet } from "styled-components";
+
+import App from "./components/App";
 
 export function render() {
     const sheet = new ServerStyleSheet();
@@ -9,6 +10,6 @@ export function render() {
 
     return {
         style: sheet.getStyleTags(),
-        html: pageHtml
-    }
+        html: pageHtml,
+    };
 }

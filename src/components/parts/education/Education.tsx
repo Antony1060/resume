@@ -1,6 +1,8 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import { FC } from "react";
 import { Info } from "react-feather";
 import styled from "styled-components";
+
 import { Percent } from "../../../lib/Percent";
 import SectionContainer from "../../elements/SectionContainer";
 import EducationPoint from "./EducationPoint";
@@ -15,15 +17,19 @@ const Container = styled.div`
 
 export type EducationStatus = "passed" | "active" | "future";
 
-const Connector = styled.div<{ status: EducationStatus, $squish?: boolean }>`
+const Connector = styled.div<{ status: EducationStatus; $squish?: boolean }>`
     height: 10px;
-    ${({ $squish }) => !$squish ? `
+    ${({ $squish }) =>
+        !$squish
+            ? `
         flex-grow: 1;
-    ` : `
+    `
+            : `
         width: 8rem;
     `}
     margin: 0 -10px;
-    background-color: ${({ status }) => status === "passed" ? "#3f5c96" : status === "active" ? "#55e480" : "#272b33"};
+    background-color: ${({ status }) =>
+        status === "passed" ? "#3f5c96" : status === "active" ? "#55e480" : "#272b33"};
     position: relative;
 `;
 
@@ -69,8 +75,8 @@ const InfoAlert: FC = () => {
                 All information is displayed in accordance with the Croatian school system.
             </InfoHover>
         </InfoContainer>
-    )
-}
+    );
+};
 
 const Education: FC = () => {
     return (
@@ -84,7 +90,7 @@ const Education: FC = () => {
                         name: "OŠ Malešnica",
                         location: "Zagreb, Croatia",
                         years: 8,
-                        progress: Percent(1)
+                        progress: Percent(1),
                     }}
                 />
                 <Connector status="passed" />
@@ -95,7 +101,7 @@ const Education: FC = () => {
                         name: "XIII. Gymnasium",
                         location: "Zagreb, Croatia",
                         years: 4,
-                        progress: Percent(90)
+                        progress: Percent(90),
                     }}
                 />
                 <Connector status="future" />
@@ -109,12 +115,12 @@ const Education: FC = () => {
                         location: "Zagreb, Croatia",
                         years: 3,
                         degree: "Bachelors",
-                        progress: Percent(0)
+                        progress: Percent(0),
                     }}
                 />
             </Container>
         </SectionContainer>
-    )
-}
+    );
+};
 
 export default Education;

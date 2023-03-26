@@ -1,10 +1,10 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 import styled, { StyledComponent } from "styled-components";
 
-const BorderWrapper = styled.div<{ name: string, $fit: boolean }>`
+const BorderWrapper = styled.div<{ name: string; $fit: boolean }>`
     background-color: #0a0d13;
     position: relative;
-    flex-grow: ${({ $fit }) => $fit ? "0" : "1"};
+    flex-grow: ${({ $fit }) => ($fit ? "0" : "1")};
     max-width: 100%;
 
     &::before {
@@ -25,8 +25,8 @@ const After = styled.div<{ after?: string | ReactElement }>`
     background-color: #0a0d13;
     padding: 0 0.4rem;
     transform: translateY(-50%);
-    display: ${({ after }) => after ? "block" : "none"};
-`
+    display: ${({ after }) => (after ? "block" : "none")};
+`;
 
 export const SectionWrapper = styled.div`
     border-radius: 4px;
@@ -39,15 +39,19 @@ export const SectionWrapper = styled.div`
     padding-top: 1.2rem;
 `;
 
-const SectionContainer: FC<{ name: string, after?: string | ReactElement, fit?: boolean, style?: StyledComponent<"div", any> }> = ({ name, after, fit = false, style: Style = SectionWrapper, children }) => {
+const SectionContainer: FC<{
+    name: string;
+    after?: string | ReactElement;
+    fit?: boolean;
+    style?: StyledComponent<"div", any>;
+    children: ReactNode;
+}> = ({ name, after, fit = false, style: Style = SectionWrapper, children }) => {
     return (
         <BorderWrapper $fit={fit} name={name}>
             <After after={after}>{after}</After>
-            <Style>
-                {children}
-            </Style>
+            <Style>{children}</Style>
         </BorderWrapper>
-    )
-}
+    );
+};
 
 export default SectionContainer;

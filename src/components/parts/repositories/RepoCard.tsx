@@ -1,7 +1,8 @@
 import { FC } from "react";
+import { Book, Code, Globe, User, Users } from "react-feather";
 import styled from "styled-components";
+
 import { AcceptedLanguages, languageColor, Repo } from "./Repos";
-import { Book, Globe, Code, User, Users } from "react-feather";
 
 const Container = styled.div`
     border-bottom: 1px solid #24282e;
@@ -41,7 +42,7 @@ const RepoLink = styled(Link)`
     border-top: 1px dashed #242424;
     padding: 0.6rem 1rem;
     margin: 0 -1rem -1rem -1rem;
-`
+`;
 
 const Org = styled.div`
     color: #83868b;
@@ -78,7 +79,7 @@ const LanguageColor = styled.div<{ language: AcceptedLanguages }>`
     width: 10px;
     height: 10px;
     border-radius: 50%;
-`
+`;
 
 const iconSize = 20;
 
@@ -86,15 +87,34 @@ const RepoCard: FC<{ repo: Repo }> = ({ repo }) => {
     return (
         <Container style={{ fontFamily: "monospace" }}>
             <Title>
-                {repo.type === "library" ? <Book size={iconSize} /> : repo.type === "website" ? <Globe size={iconSize} /> : <Code size={iconSize} />}
-                <Link href={`https://github.com/${repo.org ?? "antony1060"}/${repo.name}`} target="_blank">
+                {repo.type === "library" ? (
+                    <Book size={iconSize} />
+                ) : repo.type === "website" ? (
+                    <Globe size={iconSize} />
+                ) : (
+                    <Code size={iconSize} />
+                )}
+                <Link
+                    href={`https://github.com/${repo.org ?? "antony1060"}/${repo.name}`}
+                    target="_blank"
+                >
                     <Org>{repo.org ? repo.org + "/" : ""}</Org>
                     <span>{repo.name}</span>
                 </Link>
             </Title>
             <Body>
                 {repo.description}
-                {repo.link && <RepoLink href={repo.link} target="_blank" onClick={(e) => repo.link === "https://antony.wiki" && e.preventDefault()}>{repo.link}</RepoLink>}
+                {repo.link && (
+                    <RepoLink
+                        href={repo.link}
+                        target="_blank"
+                        onClick={(event) =>
+                            repo.link === "https://antony.wiki" && event.preventDefault()
+                        }
+                    >
+                        {repo.link}
+                    </RepoLink>
+                )}
             </Body>
             <Bottom>
                 <div>
@@ -104,7 +124,7 @@ const RepoCard: FC<{ repo: Repo }> = ({ repo }) => {
                 {repo.part === "creator" ? <User size={iconSize} /> : <Users size={iconSize} />}
             </Bottom>
         </Container>
-    )
-}
+    );
+};
 
 export default RepoCard;

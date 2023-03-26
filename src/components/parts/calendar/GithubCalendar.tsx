@@ -1,19 +1,25 @@
-import { FC, useEffect, useState } from "react"
 import axios from "axios";
+import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
-import CalendarDay from "./CalendarDay";
-import SectionContainer, { SectionWrapper } from "../../elements/SectionContainer";
 
-export type ContributionLevel = "NONE" | "FIRST_QUARTILE" | "SECOND_QUARTILE" | "THIRD_QUARTILE" | "FOURTH_QUARTILE";
+import SectionContainer, { SectionWrapper } from "../../elements/SectionContainer";
+import CalendarDay from "./CalendarDay";
+
+export type ContributionLevel =
+    | "NONE"
+    | "FIRST_QUARTILE"
+    | "SECOND_QUARTILE"
+    | "THIRD_QUARTILE"
+    | "FOURTH_QUARTILE";
 
 export type ContributionWeek = {
     contributionDays: {
-        contributionCount: number,
-        contributionLevel: ContributionLevel,
-        date: Date,
-        weekday: number
-    }[]
-}
+        contributionCount: number;
+        contributionLevel: ContributionLevel;
+        date: Date;
+        weekday: number;
+    }[];
+};
 
 const Container = styled.div`
     display: flex;
@@ -39,46 +45,78 @@ const PaddingContainer = styled.div`
     justify-content: right;
     gap: 4px;
     overflow: hidden;
-    
+
     div:first-child {
         align-self: end;
     }
-`
+`;
 
 const GithubCalendar: FC = () => {
-    const [ data, setData ] = useState<ContributionWeek[]>([]);
-    const [ total, setTotal ] = useState(0);
+    const [data, setData] = useState<ContributionWeek[]>([]);
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        axios.get("https://backend.antony.red/about/contact/gh-weeks").then(res => res.data).then((reqData: Record<string, ContributionWeek> & { status?: number }) => {
-            delete reqData["status"];
-            setData((Object.values(reqData) as ContributionWeek[]).map(it => ({
-                contributionDays: it.contributionDays
-                                        .map(day => ({ ...day, date: new Date(day.date) }))
-                                        .sort((a, b) => a.date.getTime() - b.date.getTime())
-            })).sort((a, b) => a.contributionDays[0].date.getTime() - b.contributionDays[0].date.getTime()));
-        });
+        axios
+            .get("https://backend.antony.red/about/contact/gh-weeks")
+            .then((response) => response.data)
+            .then((requestData: Record<string, ContributionWeek> & { status?: number }) => {
+                delete requestData["status"];
+                setData(
+                    (Object.values(requestData) as ContributionWeek[])
+                        .map((it) => ({
+                            contributionDays: it.contributionDays
+                                .map((day) => ({ ...day, date: new Date(day.date) }))
+                                .sort((a, b) => a.date.getTime() - b.date.getTime()),
+                        }))
+                        .sort(
+                            (a, b) =>
+                                a.contributionDays[0].date.getTime() -
+                                b.contributionDays[0].date.getTime()
+                        )
+                );
+            });
     }, []);
 
     useEffect(() => {
-        setTotal(data.reduce((acc, curr) => acc + curr.contributionDays.reduce((dAcc, dCurr) => dAcc + dCurr.contributionCount, 0), 0) ?? 0);
-    }, [data])
+        setTotal(
+            data.reduce(
+                (accumulator, current) =>
+                    accumulator +
+                    current.contributionDays.reduce(
+                        (dAccumulator, dCurrent) => dAccumulator + dCurrent.contributionCount,
+                        0
+                    ),
+                0
+            ) ?? 0
+        );
+    }, [data]);
 
     return (
         <Container className="nojs-disable">
-            <SectionContainer name="Contributions in the past year" after={total > 0 ? `${total}` : undefined} fit={!!data.length} style={Calendar}>
-                {!data.length ? <span style={{ textAlign: "center", width: "100%", alignSelf: "center" }}>Loading data...</span> :
+            <SectionContainer
+                name="Contributions in the past year"
+                after={total > 0 ? `${total}` : undefined}
+                fit={data.length > 0}
+                style={Calendar}
+            >
+                {data.length === 0 ? (
+                    <span style={{ textAlign: "center", width: "100%", alignSelf: "center" }}>
+                        Loading data...
+                    </span>
+                ) : (
                     <PaddingContainer>
-                        {data.map((week, i) =>
-                            <CalendarWeek key={i}>
-                                {week.contributionDays.map(day => <CalendarDay day={day} key={day.date.toISOString()} />)}
+                        {data.map((week, index) => (
+                            <CalendarWeek key={index}>
+                                {week.contributionDays.map((day) => (
+                                    <CalendarDay day={day} key={day.date.toISOString()} />
+                                ))}
                             </CalendarWeek>
-                        )}
+                        ))}
                     </PaddingContainer>
-                }
+                )}
             </SectionContainer>
         </Container>
-    )
-}
+    );
+};
 
 export default GithubCalendar;

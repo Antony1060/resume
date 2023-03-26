@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from "react";
+import { FC, MouseEventHandler, ReactNode } from "react";
 import styled from "styled-components";
 
 const Link = styled.a<{ $hideOnPortrait: boolean }>`
@@ -19,25 +19,31 @@ const Link = styled.a<{ $hideOnPortrait: boolean }>`
         color: white;
     }
 
-    ${p => p.$hideOnPortrait ? `
+    ${(p) =>
+        p.$hideOnPortrait
+            ? `
         @media (max-width: 550px) {
             display: none;
         }
-    ` : ""}
-`
+    `
+            : ""}
+`;
 
-const NavbarLink: FC<{ href: string, hideOnPortrait?: boolean }> = ({ href, hideOnPortrait = false, children }) => {
-    const onClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
-        if(`${window.location.protocol}//${window.location.host}` === href)
-            e.preventDefault();
-    }
+const NavbarLink: FC<{ href: string; hideOnPortrait?: boolean; children: ReactNode }> = ({
+    href,
+    hideOnPortrait = false,
+    children,
+}) => {
+    const onClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
+        if (`${window.location.protocol}//${window.location.host}` === href) event.preventDefault();
+    };
 
     return (
         <Link href={href} $hideOnPortrait={hideOnPortrait} onClick={onClick}>
             <span>./</span>
-            <span>{ children }</span>
+            <span>{children}</span>
         </Link>
-    )
-}
+    );
+};
 
 export default NavbarLink;

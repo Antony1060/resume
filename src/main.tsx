@@ -1,22 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './components/App'
+import React, { ReactNode } from "react";
+import ReactDOMClient from "react-dom/client";
 
-declare global {
-    interface Array<T> {
-        at(index: number): T | undefined
-    }
-}
+import App from "./components/App";
 
-// extending array because my typescript is fucking broken and it's 2am
-// I don't even fucking use it
-Array.prototype.at = function (index: number) {
-    return this[index >= 0 ? index : this.length - 1];
-}
+const render = import.meta.hot
+    ? (element: Element, reactNode: ReactNode) =>
+          ReactDOMClient.createRoot(element).render(reactNode)
+    : ReactDOMClient.hydrateRoot;
 
-ReactDOM.hydrate(
+render(
+    document.querySelector("#root") as HTMLElement,
     <React.StrictMode>
         <App />
-    </React.StrictMode>,
-    document.getElementById('root')
-)
+    </React.StrictMode>
+);

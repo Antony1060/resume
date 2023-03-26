@@ -1,20 +1,26 @@
 // Pre-render the app into static HTML.
-// run `yarn generate` and then `dist/static` can be served as a static site.
 
-const fs = require('fs')
-const path = require('path')
+// pain, blood, sweat and tears
+// who cursed me to javascript at 2 in the morning
 
-const toAbsolute = (p) => path.resolve(__dirname, p)
+import { readFileSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const template = fs.readFileSync(toAbsolute('dist/static/index.html'), 'utf-8')
-const { render } = require('./dist/server/server-render.js')
+import { render } from "./dist/server/server-render.js";
 
-; (async () => {
-    const { style, html } = await render();
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-    const appHtml = template.replace(`<!--app-html-->`, html).replace(`<!--app-css-->`, style);
+const toAbsolute = (p) => resolve(__dirname, p);
 
-    const filePath = `dist/static/index.html`
-    fs.writeFileSync(toAbsolute(filePath), appHtml)
-    console.log('pre-rendered:', filePath)
-})()
+const template = readFileSync(toAbsolute("dist/static/index.html"), "utf8");
+
+// doing the SSG part
+const { style, html } = render();
+
+const appHtml = template.replace("<!--app-html-->", html).replace("<!--app-css-->", style);
+
+const filePath = "dist/static/index.html";
+
+writeFileSync(toAbsolute(filePath), appHtml);
+console.log("pre-rendered:", filePath);
