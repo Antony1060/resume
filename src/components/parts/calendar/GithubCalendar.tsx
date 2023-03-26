@@ -1,4 +1,3 @@
-import axios from "axios";
 import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -56,9 +55,8 @@ const GithubCalendar: FC = () => {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        axios
-            .get("https://backend.antony.red/about/contact/gh-weeks")
-            .then((response) => response.data)
+        fetch("https://backend.antony.red/about/contact/gh-weeks")
+            .then((response) => response.json())
             .then((requestData: Record<string, ContributionWeek> & { status?: number }) => {
                 delete requestData["status"];
                 setData(

@@ -6,14 +6,13 @@
     "scripts": {
         "prepare": "husky install",
         "dev": "VITE_COMMIT_REF=$(git show -s --format=%h) vite --host",
-        "fix-styled-components-in-pre-render": "sed -E -i 's/;import ([a-zA-Z_]+),(.+)from\"styled-components\";/;import \\1fixed,\\2from\"styled-components\";const \\1 = \\1fixed.default;/g' dist/server/server-render.js",
+        "fix-styled-components-in-pre-render": "sed -E -i 's/import ([a-zA-Z_]+),(.+)from\"styled-components\";/import \\1fixed,\\2from\"styled-components\";const \\1 = \\1fixed.default;/g' dist/server/server-render.js",
         "build": "export VITE_COMMIT_REF=$(git show -s --format=%h) && vite build --outDir dist/static && vite build --ssr src/server-render.tsx --outDir dist/server && pnpm fix-styled-components-in-pre-render && node prerender.js",
         "prebuild": "rm -rf dist/static",
         "preview": "vite preview",
         "lint": "eslint -c .eslintrc.json --ext .ts,.tsx ./src"
     },
     "dependencies": {
-        "axios": "^1.3.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-feather": "^2.0.10",
