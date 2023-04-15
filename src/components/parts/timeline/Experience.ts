@@ -44,7 +44,7 @@ export const Experiences: Experience[] = (
         },
         {
             company: "V3X Labs",
-            type: "part-time",
+            type: "contract",
             logo: "https://media.antony.red/v3x_logo.png",
             location: "remote",
             start: monthFromSimple("Dec", 2021),
