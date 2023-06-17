@@ -35,6 +35,7 @@ const MainEntryContainer = styled.div<{ $active: boolean }>`
 
 const PositionContainer = styled.div<{ $active: boolean }>`
     margin-left: 2rem;
+    margin-right: 0.4rem;
     border: 1px dashed ${({ $active }) => ($active ? "#55e455aa" : "#363a40")};
     border-top: 0;
     padding: 0.6rem;
@@ -45,6 +46,7 @@ const PositionContainer = styled.div<{ $active: boolean }>`
 
     @media (max-width: 600px) {
         margin-left: 1rem;
+        margin-right: 0.2rem;
     }
 `;
 
