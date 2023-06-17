@@ -1,14 +1,34 @@
 import { Month, monthNames } from "../../../lib/date";
 
-type Experience = {
-    company?: string;
-    logo?: string;
-    type: "full-time" | "part-time" | "self-employed" | "freelance" | "contract" | "internship";
-    location: "remote" | string;
-    start: Date;
-    end?: Date;
-    title: string;
-};
+export type Experience =
+    | {
+          company?: string;
+          logo?: string;
+          type:
+              | "full-time"
+              | "part-time"
+              | "self-employed"
+              | "freelance"
+              | "contract"
+              | "internship";
+          location: "remote" | string;
+          start: Date;
+          end?: Date;
+      } & (
+          | {
+                title: string;
+            }
+          | {
+                positions: (
+                    | (ExperienceDates & { title: string; proxy?: false })
+                    | (Pick<Experience, "start" | "end" | "logo"> & { company: string } & {
+                          proxy: true;
+                      })
+                )[];
+            }
+      );
+
+export type ExperienceDates = Pick<Experience, "start" | "end">;
 
 export const formatSimpleDate = (date: Date) =>
     `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
@@ -33,6 +53,12 @@ export const formatDiff = (diff: Diff) => {
     return `${diff.years} yrs, ${diff.months} mos`;
 };
 
+const __startEndDateExperienceSortComparator = (a: ExperienceDates, b: ExperienceDates) => {
+    if (!!a.end !== !!b.end) return a.end ? 1 : -1;
+
+    return b.start.getTime() - a.start.getTime();
+};
+
 export const Experiences: Experience[] = (
     [
         {
@@ -47,7 +73,24 @@ export const Experiences: Experience[] = (
             logo: "https://media.antony.red/v3x_logo.png",
             location: "remote",
             start: monthFromSimple("Dec", 2021),
-            title: "Research & Development engineer",
+            positions: [
+                {
+                    proxy: false,
+                    title: "Research & Development engineer",
+                    start: monthFromSimple("Dec", 2021),
+                },
+                {
+                    proxy: false,
+                    title: "Project manager - ENS Cards",
+                    start: monthFromSimple("Mar", 2023),
+                },
+                {
+                    proxy: true,
+                    logo: "https://media.antony.red/ens_mark.png",
+                    company: "Ethereum Name Service",
+                    start: monthFromSimple("Jan", 2023),
+                },
+            ],
         },
         {
             company: "SimpliServers",
@@ -59,8 +102,13 @@ export const Experiences: Experience[] = (
             title: "System Administrator and Developer",
         },
     ] as Experience[]
-).sort((a, b) => {
-    if (!!a.end !== !!b.end) return a.end ? 1 : -1;
-
-    return b.start.getTime() - a.start.getTime();
-});
+)
+    .map((experience) =>
+        "title" in experience
+            ? experience
+            : {
+                  ...experience,
+                  positions: experience.positions.sort(__startEndDateExperienceSortComparator),
+              }
+    )
+    .sort(__startEndDateExperienceSortComparator);
