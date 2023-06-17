@@ -13,8 +13,7 @@ type Experience = {
 export const formatSimpleDate = (date: Date) =>
     `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
 
-const monthFromSimple = (month: Month, year: number) =>
-    new Date(`${year}-${monthNames.indexOf(month) + 1}`);
+const monthFromSimple = (month: Month, year: number) => new Date(year, monthNames.indexOf(month));
 
 type Diff = { years: number; months: number };
 
