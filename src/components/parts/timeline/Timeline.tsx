@@ -109,6 +109,7 @@ const CompanyWebsiteLink = styled.a`
     gap: 0.6rem;
     color: white;
     text-decoration-color: transparent;
+    width: fit-content;
     transition: all 50ms linear;
 
     &:hover {
