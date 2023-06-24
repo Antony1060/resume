@@ -3,6 +3,7 @@ import { Month, monthNames } from "../../../lib/date";
 export type Experience =
     | {
           company?: string;
+          companyWebsite?: string;
           logo?: string;
           type:
               | "full-time"
@@ -20,8 +21,13 @@ export type Experience =
             }
           | {
                 positions: (
-                    | (ExperienceDates & { title: string; proxy?: false })
-                    | (Pick<Experience, "start" | "end" | "logo"> & { company: string } & {
+                    | (Pick<Experience, "start" | "end" | "companyWebsite"> & {
+                          title: string;
+                          proxy?: false;
+                      })
+                    | (Pick<Experience, "start" | "end" | "logo" | "companyWebsite"> & {
+                          company: string;
+                      } & {
                           proxy: true;
                       })
                 )[];
@@ -69,6 +75,7 @@ export const Experiences: Experience[] = (
         },
         {
             company: "V3X Labs",
+            companyWebsite: "https://v3x.company",
             type: "contract",
             logo: "https://media.antony.red/v3x_logo.png",
             location: "remote",
@@ -88,12 +95,14 @@ export const Experiences: Experience[] = (
                     proxy: true,
                     logo: "https://media.antony.red/ens_mark.png",
                     company: "Ethereum Name Service",
+                    companyWebsite: "https://ens.domains",
                     start: monthFromSimple("Jan", 2023),
                 },
             ],
         },
         {
             company: "SimpliServers",
+            companyWebsite: "https://simpliservers.com",
             logo: "https://media.antony.red/simpliservers.png",
             type: "contract",
             location: "remote",

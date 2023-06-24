@@ -103,6 +103,20 @@ const PositionProxyLogo = styled.img`
     }
 `;
 
+const CompanyWebsiteLink = styled.a`
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: white;
+    text-decoration-color: transparent;
+    transition: all 50ms linear;
+
+    &:hover {
+        text-decoration-color: white;
+        transition: all 50ms linear;
+    }
+`;
+
 const DateRangeSubDetail: FC<ExperienceDates> = ({ start, end }) => {
     return (
         <SubDetail>
@@ -134,13 +148,36 @@ const Timeline: FC = () => {
                 <Entry key={index}>
                     <MainEntryContainer $active={!it.end}>
                         <Detail>
-                            <span>
-                                {"title" in it ? it.title : it.company ?? "Unknown company"}
-                            </span>
+                            {"title" in it ? (
+                                <span>{it.title}</span>
+                            ) : (
+                                it.company &&
+                                (it.companyWebsite ? (
+                                    <CompanyWebsiteLink
+                                        target={"_blank"}
+                                        href={it.companyWebsite}
+                                        rel="noreferrer"
+                                    >
+                                        {it.company}
+                                    </CompanyWebsiteLink>
+                                ) : (
+                                    <span>{it.company}</span>
+                                ))
+                            )}
                             <SubDetail>
                                 {it.company && "title" in it && (
                                     <>
-                                        <span>{it.company}</span>
+                                        {it.companyWebsite ? (
+                                            <CompanyWebsiteLink
+                                                target={"_blank"}
+                                                href={it.companyWebsite}
+                                                rel="noreferrer"
+                                            >
+                                                {it.company}
+                                            </CompanyWebsiteLink>
+                                        ) : (
+                                            <span>{it.company}</span>
+                                        )}
                                         <Bullet>&bull;</Bullet>
                                     </>
                                 )}
@@ -169,7 +206,20 @@ const Timeline: FC = () => {
                                                     alignItems: "center",
                                                 }}
                                             >
-                                                <span>{position.company}</span>
+                                                {position.companyWebsite ? (
+                                                    <CompanyWebsiteLink
+                                                        target={"_blank"}
+                                                        href={position.companyWebsite}
+                                                        rel="noreferrer"
+                                                        style={{
+                                                            color: "#dfdfdf",
+                                                        }}
+                                                    >
+                                                        {position.company}
+                                                    </CompanyWebsiteLink>
+                                                ) : (
+                                                    <span>{position.company}</span>
+                                                )}
                                                 <span
                                                     style={{
                                                         color: "#ffa65d",
