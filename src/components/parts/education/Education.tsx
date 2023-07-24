@@ -109,7 +109,6 @@ const Education: FC = () => {
                     status="future"
                     description="College"
                     descriptionAlignment="right"
-                    uncertaint={true}
                     detail={{
                         name: "Algebra University College",
                         location: "Zagreb, Croatia",
