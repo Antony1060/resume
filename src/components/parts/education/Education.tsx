@@ -95,7 +95,7 @@ const Education: FC = () => {
                 />
                 <Connector status="passed" />
                 <EducationPoint
-                    status="active"
+                    status="passed"
                     description="High school"
                     detail={{
                         name: "XIII. Gymnasium",
@@ -104,9 +104,9 @@ const Education: FC = () => {
                         progress: Percent(1),
                     }}
                 />
-                <Connector status="future" />
+                <Connector status="passed" />
                 <EducationPoint
-                    status="future"
+                    status="active"
                     description="College"
                     descriptionAlignment="right"
                     detail={{
