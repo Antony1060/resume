@@ -78,6 +78,8 @@ const InfoAlert: FC = () => {
     );
 };
 
+const [UNI_ECTS, UNI_ECTS_MAX] = [0, 180] as const;
+
 const Education: FC = () => {
     return (
         <SectionContainer name="Education" after={<InfoAlert />}>
@@ -114,7 +116,7 @@ const Education: FC = () => {
                         location: "Zagreb, Croatia",
                         years: 3,
                         degree: "Bachelors",
-                        progress: Percent(0),
+                        progress: Percent(+(UNI_ECTS / UNI_ECTS_MAX).toFixed(2)),
                     }}
                 />
             </Container>
