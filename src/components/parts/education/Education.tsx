@@ -109,7 +109,7 @@ const Education: FC = () => {
                 <Connector status="passed" />
                 <EducationPoint
                     status="active"
-                    description="College"
+                    description="University"
                     descriptionAlignment="right"
                     detail={{
                         name: "Algebra University College",
