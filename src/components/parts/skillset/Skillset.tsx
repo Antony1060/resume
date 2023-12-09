@@ -8,22 +8,22 @@ import GitLogo from "/images/git.webp";
 import GoLogo from "/images/golang.svg";
 import GradleLogo from "/images/gradle.svg";
 import JavaLogo from "/images/java.svg";
-import JsLogo from "/images/javascript.webp";
 import KotlinLogo from "/images/kotlin.webp";
 import KubernetesLogo from "/images/kubernetes.svg";
 import MongoLogo from "/images/mongo.svg";
 import MySqlLogo from "/images/mysql.webp";
 import NodeLogo from "/images/nodejs.webp";
+import PnpmLogo from "/images/pnpm.svg";
 import PythonLogo from "/images/python.webp";
 import ReactLogo from "/images/react.svg";
 import RedisLogo from "/images/redis.svg";
+import RustLogo from "/images/rust.png";
 import SassLogo from "/images/sass.webp";
 import ScyllaLogo from "/images/scylla.svg";
 import SvelteLogo from "/images/svelte.svg";
 import TailwindCSS from "/images/tailwindcss.svg";
 import TsLogo from "/images/typescript.webp";
 import ViteLogo from "/images/vite.svg";
-import YarnLogo from "/images/yarn.svg";
 
 import SectionContainer, { SectionWrapper } from "../../elements/SectionContainer";
 import Skill from "./Skill";
@@ -127,14 +127,14 @@ const Skillset: FC = () => {
             <SectionContainer name="Tools" style={SubWrapperSecond}>
                 <Skill name="Git" icon={GitLogo} imgHeight={1.6} />
                 <Skill name="Docker" icon={DockerLogo} imgHeight={1.4} />
-                <Skill name="Yarn" icon={YarnLogo} imgHeight={1.8} />
+                <Skill name="PNPM" icon={PnpmLogo} imgHeight={1.8} />
                 <Skill name="Gradle" icon={GradleLogo} imgHeight={1.4} />
                 <Skill name="Vite" icon={ViteLogo} imgHeight={1.6} />
                 <Skill name="Bash" icon={BashLogo} imgHeight={2} />
             </SectionContainer>
             <SectionContainer name="Languages" style={SubWrapperThird}>
-                <Skill name="JavaScript" icon={JsLogo} />
                 <Skill name="TypeScript" icon={TsLogo} />
+                <Skill name="Rust" icon={RustLogo} />
                 <Skill name="Java" icon={JavaLogo} />
                 <Skill name="Kotlin" icon={KotlinLogo} />
                 <Skill name="Go" icon={GoLogo} />
