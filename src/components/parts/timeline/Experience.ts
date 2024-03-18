@@ -80,16 +80,19 @@ export const Experiences: Experience[] = (
             logo: "https://media.antony.red/v3x_logo.png",
             location: "remote",
             start: monthFromSimple("Dec", 2021),
+            end: monthFromSimple("Mar", 2024),
             positions: [
                 {
                     proxy: false,
                     title: "Research & Development engineer",
                     start: monthFromSimple("Dec", 2021),
+                    end: monthFromSimple("Mar", 2024),
                 },
                 {
                     proxy: false,
                     title: "Project manager - ENS Cards",
                     start: monthFromSimple("Mar", 2023),
+                    end: monthFromSimple("Mar", 2024),
                 },
                 {
                     proxy: true,
@@ -97,6 +100,7 @@ export const Experiences: Experience[] = (
                     company: "Ethereum Name Service",
                     companyWebsite: "https://ens.domains",
                     start: monthFromSimple("Jan", 2023),
+                    end: monthFromSimple("Mar", 2024),
                 },
             ],
         },
