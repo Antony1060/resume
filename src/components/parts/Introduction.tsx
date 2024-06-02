@@ -123,12 +123,12 @@ const Introduction: FC = () => {
     return (
         <SectionContainer name="Introduction" style={Wrapper}>
             <InfoContainer>
-                <Name>Antonio Fran Štignjedec</Name>
+                <Name>Antonio Fran Trstenjak</Name>
                 <DetailContainer>
                     <Detail
                         name="E-Mail"
-                        value="antony@antony.red"
-                        href="mailto:antony@antony.red"
+                        value="antony@has.consulting"
+                        href="mailto:antony@has.consulting"
                     />
                     <Detail
                         name="Linked In"

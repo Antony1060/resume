@@ -1,6 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
 
+import LogoTransparent from "/images/logoTransparent.png";
+
 import NavbarLink from "./NavbarLink";
 
 const NavbarContainer = styled.div`
@@ -64,11 +66,7 @@ const Navbar: FC = () => {
         <NavbarContainer>
             <NavbarContent>
                 <Logo>
-                    <img
-                        style={{ width: "2rem" }}
-                        src="https://media.antony.red/logoTransparent.png"
-                        alt="Logo"
-                    />
+                    <img style={{ width: "2rem" }} src={LogoTransparent} alt="Logo" />
                     <HomeLink href="/">~/resume</HomeLink>
                 </Logo>
                 <LinksContainer>

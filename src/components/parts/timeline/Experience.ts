@@ -1,3 +1,7 @@
+import ENSLogo from "/images/ens_mark.png";
+import SimpliServersLogo from "/images/simpliservers.png";
+import V3XLogo from "/images/v3x_logo.png";
+
 import { Month, monthNames } from "../../../lib/date";
 
 export type Experience =
@@ -77,7 +81,7 @@ export const Experiences: Experience[] = (
             company: "V3X Labs",
             companyWebsite: "https://v3x.company",
             type: "contract",
-            logo: "https://media.antony.red/v3x_logo.png",
+            logo: V3XLogo,
             location: "remote",
             start: monthFromSimple("Dec", 2021),
             end: monthFromSimple("Mar", 2024),
@@ -96,7 +100,7 @@ export const Experiences: Experience[] = (
                 },
                 {
                     proxy: true,
-                    logo: "https://media.antony.red/ens_mark.png",
+                    logo: ENSLogo,
                     company: "Ethereum Name Service",
                     companyWebsite: "https://ens.domains",
                     start: monthFromSimple("Jan", 2023),
@@ -107,7 +111,7 @@ export const Experiences: Experience[] = (
         {
             company: "SimpliServers",
             companyWebsite: "https://simpliservers.com",
-            logo: "https://media.antony.red/simpliservers.png",
+            logo: SimpliServersLogo,
             type: "contract",
             location: "remote",
             start: monthFromSimple("May", 2021),

@@ -78,7 +78,7 @@ const InfoAlert: FC = () => {
     );
 };
 
-const [UNI_ECTS, UNI_ECTS_MAX] = [0, 180] as const;
+const [UNI_ECTS, UNI_ECTS_MAX] = [19, 180] as const;
 
 const Education: FC = () => {
     return (
@@ -112,7 +112,7 @@ const Education: FC = () => {
                     description="University"
                     descriptionAlignment="right"
                     detail={{
-                        name: "Algebra University College",
+                        name: "Algebra University",
                         location: "Zagreb, Croatia",
                         years: 3,
                         degree: "Bachelors",
