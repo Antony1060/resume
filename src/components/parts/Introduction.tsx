@@ -127,8 +127,8 @@ const Introduction: FC = () => {
                 <DetailContainer>
                     <Detail
                         name="E-Mail"
-                        value="antony@has.consulting"
-                        href="mailto:antony@has.consulting"
+                        value="antony@antony.red"
+                        href="mailto:antony@antony.red"
                     />
                     <Detail
                         name="Linked In"
