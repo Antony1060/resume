@@ -166,7 +166,10 @@ type EducationDetail = {
     name: string;
     location: string;
     years: number;
-    degree?: "Bachelors" | "Masters" | "PhD";
+    degree?: {
+        type: "Bachelors" | "Masters" | "PhD";
+        study: string;
+    };
     progress: number;
 };
 
@@ -175,7 +178,6 @@ type EducationPointProperties = {
     description: string;
     detail?: EducationDetail;
     descriptionAlignment?: Alignment;
-    uncertaint?: boolean;
 };
 
 const EducationPoint: FC<EducationPointProperties> = ({
@@ -183,7 +185,6 @@ const EducationPoint: FC<EducationPointProperties> = ({
     description,
     detail,
     descriptionAlignment,
-    uncertaint,
 }) => {
     const progressPercent = detail ? detail.progress * 100 : undefined;
 
@@ -192,7 +193,7 @@ const EducationPoint: FC<EducationPointProperties> = ({
             {status === "active" && <RadarEffect />}
             <Description alignment={descriptionAlignment ?? "center"}>{description}</Description>
             <Detail status={status}>
-                {!detail || isNullish(progressPercent) || uncertaint ? (
+                {!detail || isNullish(progressPercent) ? (
                     <span style={{ padding: "0.6rem", textAlign: "center", fontSize: "1rem" }}>
                         Unknown so far...
                     </span>
@@ -200,14 +201,18 @@ const EducationPoint: FC<EducationPointProperties> = ({
                     <>
                         <DetailTitle>
                             <span>{detail.name}</span>
-                            {detail.degree && <Degree>{detail.degree}</Degree>}
+                            {detail.degree && (
+                                <Degree>
+                                    {detail.degree.type} ({detail.degree.study})
+                                </Degree>
+                            )}
                             <Location>{detail.location}</Location>
                         </DetailTitle>
                         <DetailContent>
                             <div>
                                 <ProgressIndicator>
                                     {progressPercent !== 100
-                                        ? progressPercent + "% done"
+                                        ? progressPercent.toFixed(2) + "% done"
                                         : "Completed"}{" "}
                                 </ProgressIndicator>
                                 <span>{detail.years} years</span>

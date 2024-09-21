@@ -11,8 +11,7 @@ const Container = styled.div`
     display: flex;
     justify-content: stretch;
     align-items: center;
-    padding: 1rem 2rem;
-    padding-bottom: 2.4rem;
+    padding: 1rem 2rem 2.4rem;
 `;
 
 export type EducationStatus = "passed" | "active" | "future";
@@ -115,8 +114,11 @@ const Education: FC = () => {
                         name: "Algebra University",
                         location: "Zagreb, Croatia",
                         years: 3,
-                        degree: "Bachelors",
-                        progress: Percent(+(UNI_ECTS / UNI_ECTS_MAX).toFixed(2)),
+                        degree: {
+                            type: "Bachelors",
+                            study: "computer engineering",
+                        },
+                        progress: Percent(+(UNI_ECTS / UNI_ECTS_MAX)),
                     }}
                 />
             </Container>
