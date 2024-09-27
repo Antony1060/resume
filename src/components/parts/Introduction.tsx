@@ -132,8 +132,8 @@ const Introduction: FC = () => {
                     />
                     <Detail
                         name="Linked In"
-                        value="/in/antony1060"
-                        href="https://linkedin.com/in/antony1060"
+                        value="/in/antoniotrstenjak"
+                        href="https://linkedin.com/in/antoniotrstenjak"
                     />
                     <Detail name="GitHub" value="Antony1060" href="https://github.com/antony1060" />
                     <Detail
