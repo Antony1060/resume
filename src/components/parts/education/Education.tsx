@@ -71,7 +71,7 @@ const InfoAlert: FC = () => {
         <InfoContainer>
             <Info size={20} />
             <InfoHover>
-                All information is displayed in accordance with the Croatian school system.
+                All information is displayed in accordance with the Croatian education system.
             </InfoHover>
         </InfoContainer>
     );

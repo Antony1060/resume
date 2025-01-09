@@ -1,5 +1,8 @@
 import { FC } from "react";
+import { FileText } from "react-feather";
 import styled from "styled-components";
+
+import CVUrl from "/docs/cv.pdf";
 
 import SectionContainer, { SectionWrapper } from "../elements/SectionContainer";
 
@@ -119,9 +122,32 @@ const Detail: FC<{ name: string; value: string; href?: string; mobileFriendly?: 
     );
 };
 
+const CVButtonContainer = styled.a`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+
+    &:hover span {
+        text-decoration: underline;
+    }
+`;
+
+const CVButton: FC = () => {
+    return (
+        <CVButtonContainer target={"_blankž"} href={CVUrl}>
+            <FileText size={16} />
+            <span>CV</span>
+        </CVButtonContainer>
+    );
+};
+
 const Introduction: FC = () => {
     return (
-        <SectionContainer name="Introduction" style={Wrapper}>
+        <SectionContainer name="Introduction" style={Wrapper} after={<CVButton />}>
             <InfoContainer>
                 <Name>Antonio Fran Trstenjak</Name>
                 <DetailContainer>
