@@ -1,4 +1,4 @@
-export type AcceptedLanguages = "TypeScript" | "React" | "Svelte";
+export type AcceptedLanguages = "TypeScript" | "React" | "Svelte" | "Rust";
 
 export const languageColor = (language: AcceptedLanguages) => {
     switch (language) {
@@ -8,6 +8,8 @@ export const languageColor = (language: AcceptedLanguages) => {
             return "#61dafb";
         case "Svelte":
             return "#ff3e00";
+        case "Rust":
+            return "#9a6039";
     }
 };
 
@@ -40,10 +42,9 @@ export const Repos: [Repo, Repo, Repo, Repo, Repo, Repo] = [
         part: "creator",
     },
     {
-        name: "cloudflare-domain-info",
-        description:
-            "An API for getting and checking all domains registered with a Cloudflare account.",
-        language: "TypeScript",
+        name: "oidc-saml-demo",
+        description: "A simple demo app that implements OIDC and SAML authentication flows.",
+        language: "Rust",
         type: null,
         part: "creator",
     },
