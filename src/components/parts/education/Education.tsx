@@ -77,7 +77,7 @@ const InfoAlert: FC = () => {
     );
 };
 
-const [UNI_ECTS, UNI_ECTS_MAX] = [62, 180] as const;
+const [UNI_ECTS, UNI_ECTS_MAX] = [106, 180] as const;
 
 const Education: FC = () => {
     return (
