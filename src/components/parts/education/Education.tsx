@@ -7,6 +7,8 @@ import { Percent } from "../../../lib/Percent";
 import SectionContainer from "../../elements/SectionContainer";
 import EducationPoint from "./EducationPoint";
 
+const [UNI_ECTS, UNI_ECTS_MAX] = [115, 180] as const;
+
 const Container = styled.div`
     display: flex;
     justify-content: stretch;
@@ -76,8 +78,6 @@ const InfoAlert: FC = () => {
         </InfoContainer>
     );
 };
-
-const [UNI_ECTS, UNI_ECTS_MAX] = [106, 180] as const;
 
 const Education: FC = () => {
     return (
