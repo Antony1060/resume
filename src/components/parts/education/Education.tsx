@@ -7,7 +7,7 @@ import { Percent } from "../../../lib/Percent";
 import SectionContainer from "../../elements/SectionContainer";
 import EducationPoint from "./EducationPoint";
 
-const [UNI_ECTS, UNI_ECTS_MAX] = [136, 180] as const;
+const [UNI_ECTS, UNI_ECTS_MAX] = [145, 180] as const;
 
 const Container = styled.div`
     display: flex;
