@@ -14,10 +14,11 @@ import MongoLogo from "/images/mongo.svg";
 import MySqlLogo from "/images/mysql.webp";
 import NodeLogo from "/images/nodejs.webp";
 import PnpmLogo from "/images/pnpm.svg";
+import PostgresLogo from "/images/postgresql.webp";
 import PythonLogo from "/images/python.webp";
 import ReactLogo from "/images/react.svg";
 import RedisLogo from "/images/redis.svg";
-import RustLogo from "/images/rust.png";
+import RustLogo from "/images/rust.webp";
 import SassLogo from "/images/sass.webp";
 import ScyllaLogo from "/images/scylla.svg";
 import SvelteLogo from "/images/svelte.svg";
@@ -116,22 +117,6 @@ const SubWrapperFourth = styled(SubWrapper)`
 const Skillset: FC = () => {
     return (
         <SectionContainer name="Skill set" style={Wrapper}>
-            <SectionContainer name="Technologies" style={SubWrapperFirst}>
-                <Skill name="React" icon={ReactLogo} />
-                <Skill name="Svelte" icon={SvelteLogo} />
-                <Skill name="SCSS" icon={SassLogo} imgHeight={1.6} />
-                <Skill name="TailwindCSS" icon={TailwindCSS} imgHeight={1.2} />
-                <Skill name="NodeJS" icon={NodeLogo} imgHeight={1.8} />
-                <Skill name="Kubernetes" icon={KubernetesLogo} imgHeight={1.8} />
-            </SectionContainer>
-            <SectionContainer name="Tools" style={SubWrapperSecond}>
-                <Skill name="Git" icon={GitLogo} imgHeight={1.6} />
-                <Skill name="Docker" icon={DockerLogo} imgHeight={1.4} />
-                <Skill name="PNPM" icon={PnpmLogo} imgHeight={1.8} />
-                <Skill name="Gradle" icon={GradleLogo} imgHeight={1.4} />
-                <Skill name="Vite" icon={ViteLogo} imgHeight={1.6} />
-                <Skill name="Bash" icon={BashLogo} imgHeight={2} />
-            </SectionContainer>
             <SectionContainer name="Languages" style={SubWrapperThird}>
                 <Skill name="TypeScript" icon={TsLogo} />
                 <Skill name="Rust" icon={RustLogo} />
@@ -140,7 +125,24 @@ const Skillset: FC = () => {
                 <Skill name="Go" icon={GoLogo} />
                 <Skill name="Python" icon={PythonLogo} />
             </SectionContainer>
+            <SectionContainer name="Tools" style={SubWrapperSecond}>
+                <Skill name="Git" icon={GitLogo} imgHeight={1.6} />
+                <Skill name="Docker" icon={DockerLogo} imgHeight={1.4} />
+                <Skill name="Bash" icon={BashLogo} imgHeight={2} />
+                <Skill name="PNPM" icon={PnpmLogo} imgHeight={1.8} />
+                <Skill name="Gradle" icon={GradleLogo} imgHeight={1.4} />
+                <Skill name="Vite" icon={ViteLogo} imgHeight={1.6} />
+            </SectionContainer>
+            <SectionContainer name="Technologies" style={SubWrapperFirst}>
+                <Skill name="React" icon={ReactLogo} />
+                <Skill name="TailwindCSS" icon={TailwindCSS} imgHeight={1.2} />
+                <Skill name="Kubernetes" icon={KubernetesLogo} imgHeight={1.8} />
+                <Skill name="NodeJS" icon={NodeLogo} imgHeight={1.8} />
+                <Skill name="Svelte" icon={SvelteLogo} />
+                <Skill name="SCSS" icon={SassLogo} imgHeight={1.6} />
+            </SectionContainer>
             <SectionContainer name="Databases" style={SubWrapperFourth}>
+                <Skill name="PostgreSQL" icon={PostgresLogo} imgHeight={1.8} />
                 <Skill name="MySQL" icon={MySqlLogo} imgHeight={1.6} />
                 <Skill name="Scylla" icon={ScyllaLogo} imgHeight={1.8} />
                 <Skill name="Cassandra" icon={CassandraLogo} imgHeight={1.6} />
