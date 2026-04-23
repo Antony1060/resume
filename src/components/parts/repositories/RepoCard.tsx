@@ -23,8 +23,7 @@ const Title = styled.div`
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 1rem;
-    padding-top: 1.2rem;
+    padding: 1.2rem 1rem 1rem 1rem;
 `;
 
 const Link = styled.a`
@@ -98,7 +97,7 @@ const RepoCard: FC<{ repo: Repo }> = ({ repo }) => {
                     href={`https://github.com/${repo.org ?? "antony1060"}/${repo.name}`}
                     target="_blank"
                 >
-                    <Org>{repo.org ? repo.org + "/" : ""}</Org>
+                    <Org>{repo.orgDisplay !== false && repo.org ? repo.org + "/" : ""}</Org>
                     <span>{repo.name}</span>
                 </Link>
             </Title>

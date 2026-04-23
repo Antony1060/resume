@@ -1,4 +1,4 @@
-export type AcceptedLanguages = "TypeScript" | "React" | "Svelte" | "Rust";
+export type AcceptedLanguages = "TypeScript" | "React" | "C" | "Rust";
 
 export const languageColor = (language: AcceptedLanguages) => {
     switch (language) {
@@ -6,8 +6,8 @@ export const languageColor = (language: AcceptedLanguages) => {
             return "#2b7489";
         case "React":
             return "#61dafb";
-        case "Svelte":
-            return "#ff3e00";
+        case "C":
+            return "#555555";
         case "Rust":
             return "#9a6039";
     }
@@ -16,9 +16,10 @@ export const languageColor = (language: AcceptedLanguages) => {
 export type Repo = {
     name: string;
     org?: string;
+    orgDisplay?: boolean;
     description: string;
     language: AcceptedLanguages;
-    type: "website" | "library" | null;
+    type: "website" | "library" | "project";
     link?: string;
     part: "contributor" | "creator";
 };
@@ -26,50 +27,52 @@ export type Repo = {
 // a great way to limit array size ik
 export const Repos: [Repo, Repo, Repo, Repo, Repo, Repo] = [
     {
+        name: "gas-orm",
+        description: "Postgres ORM focusing on compile-time safety while heavily using macros.",
+        language: "Rust",
+        type: "library",
+        part: "creator",
+    },
+    {
+        name: "dbger.c",
+        description: "GDB-inspired x86_64 Linux debugger and ELF disassembler.",
+        language: "C",
+        type: "project",
+        part: "creator",
+    },
+    {
         name: "resume",
-        description: "My personal resume website written in React. A.K.A. this website.",
+        description: "My personal resume website written in React, i.e. this website.",
         language: "React",
         type: "website",
         link: "https://antony.wiki",
         part: "creator",
     },
     {
-        name: "blog",
-        description: "My personal blog.",
-        language: "Svelte",
+        name: "kontestis",
+        org: "ItKlubBozoLagan",
+        orgDisplay: false,
+        description: "Competitive programming contest platform.",
+        language: "TypeScript",
         type: "website",
-        link: "https://antony.cloud",
-        part: "creator",
+        link: "https://kontestis.ac",
+        part: "contributor",
     },
     {
-        name: "oidc-saml-demo",
-        description: "A simple demo app that implements OIDC and SAML authentication flows.",
-        language: "Rust",
-        type: null,
-        part: "creator",
-    },
-    {
-        name: "permissio",
-        org: "v3xlabs",
+        name: "evaluator-v2",
+        org: "ItKlubBozoLagan",
+        orgDisplay: false,
         description:
-            "something with permissions ig - compact bigint bitfield permission library for node.js ",
-        language: "TypeScript",
-        type: "library",
+            "The evaluation engine used on the Kontestis platform handling sandboxing and distribution.",
+        language: "Rust",
+        type: "project",
         part: "contributor",
     },
     {
-        name: "logger",
+        name: "enstate",
         org: "v3xlabs",
-        description: "Zero dependency, light-weight, blazing fast customizable logging library.",
-        language: "TypeScript",
-        type: "library",
-        part: "contributor",
-    },
-    {
-        name: "scyllo",
-        org: "v3xlabs",
-        description: "The Cassandra/Scylla library you didn't want but got anyways.",
-        language: "TypeScript",
+        description: "ENS JSON API & Cloudflare Worker.",
+        language: "Rust",
         type: "library",
         part: "contributor",
     },
