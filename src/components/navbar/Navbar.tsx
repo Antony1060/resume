@@ -73,7 +73,6 @@ const Navbar: FC = () => {
                     <NavbarLink href="https://antony.wiki" hideOnPortrait>
                         Resume
                     </NavbarLink>
-                    <NavbarLink href="https://antony.cloud">Blog</NavbarLink>
                     <NavbarLink href="https://antony.contact">Contact</NavbarLink>
                 </LinksContainer>
             </NavbarContent>

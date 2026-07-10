@@ -9,6 +9,7 @@ import {
     ExperienceDates,
     Experiences,
     formatDiff,
+    formatExperienceType,
     formatSimpleDate,
 } from "./Experience";
 
@@ -85,8 +86,8 @@ const Bullet = styled.span`
     }
 `;
 
-const CompanyLogo = styled.img`
-    width: 3.4rem;
+const CompanyLogo = styled.img<{ scale?: number }>`
+    width: ${({ scale }) => (scale ?? 1) * 3.4}rem;
     border-radius: 4px;
 
     @media (max-width: 600px) {
@@ -182,14 +183,18 @@ const Timeline: FC = () => {
                                         <Bullet>&bull;</Bullet>
                                     </>
                                 )}
-                                <span style={{ textTransform: "capitalize" }}>{it.type}</span>
+                                <span>{formatExperienceType(it.type)}</span>
                                 <Bullet>&bull;</Bullet>
                                 <span style={{ textTransform: "capitalize" }}>{it.location}</span>
                             </SubDetail>
                             <DateRangeSubDetail start={it.start} end={it.end} />
                         </Detail>
                         {it.logo && (
-                            <CompanyLogo src={it.logo} alt={(it.company ?? "") + " logo"} />
+                            <CompanyLogo
+                                src={it.logo}
+                                scale={it.logoScale}
+                                alt={(it.company ?? "") + " logo"}
+                            />
                         )}
                     </MainEntryContainer>
                     {"positions" in it &&

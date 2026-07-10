@@ -1,4 +1,5 @@
 import ENSLogo from "/images/ens_mark.png";
+import LovableLogo from "/images/lovable.svg";
 import SimpliServersLogo from "/images/simpliservers.png";
 import V3XLogo from "/images/v3x_logo.png";
 
@@ -8,6 +9,7 @@ export type Experience =
     | {
           company?: string;
           companyWebsite?: string;
+          logoScale?: number;
           logo?: string;
           type:
               | "full-time"
@@ -58,7 +60,9 @@ export const diffDates = (start: Date, end: Date): Diff => {
 };
 
 export const formatDiff = (diff: Diff) => {
-    if (diff.years === 0) return `${diff.months} mos`;
+    if (diff.years === 0) return `${Math.max(1, diff.months)} mos`;
+
+    if (diff.months === 0) return `${diff.years} yrs`;
 
     return `${diff.years} yrs, ${diff.months} mos`;
 };
@@ -69,13 +73,39 @@ const __startEndDateExperienceSortComparator = (a: ExperienceDates, b: Experienc
     return b.start.getTime() - a.start.getTime();
 };
 
+export const formatExperienceType = (type: Experience["type"]): string => {
+    switch (type) {
+        case "contract":
+            return "Contract";
+        case "freelance":
+            return "Freelance";
+        case "internship":
+            return "Internship";
+        case "full-time":
+            return "Full time";
+        case "part-time":
+            return "Part tiem";
+        case "self-employed":
+            return "Self-employed";
+    }
+};
+
 export const Experiences: Experience[] = (
     [
         {
-            type: "self-employed",
-            location: "Sveta Nedelja, Croatia",
-            start: monthFromSimple("Oct", 2019),
-            title: "Independent Consultant",
+            company: "Lovable",
+            companyWebsite: "https://lovable.dev",
+            type: "full-time",
+            logo: LovableLogo,
+            logoScale: 0.8,
+            location: "Stockholm, Sweden",
+            start: monthFromSimple("Jul", 2026),
+            positions: [
+                {
+                    title: "Fullstack Product engineer",
+                    start: monthFromSimple("Jul", 2026),
+                },
+            ],
         },
         {
             company: "V3X Labs",
@@ -87,14 +117,12 @@ export const Experiences: Experience[] = (
             end: monthFromSimple("Mar", 2024),
             positions: [
                 {
-                    proxy: false,
                     title: "Research & Development engineer",
                     start: monthFromSimple("Dec", 2021),
                     end: monthFromSimple("Mar", 2024),
                 },
                 {
-                    proxy: false,
-                    title: "Project manager - ENS Cards",
+                    title: "Team lead - ENS Cards",
                     start: monthFromSimple("Mar", 2023),
                     end: monthFromSimple("Mar", 2024),
                 },
