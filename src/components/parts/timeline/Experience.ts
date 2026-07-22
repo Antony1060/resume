@@ -102,7 +102,7 @@ export const Experiences: Experience[] = (
             start: monthFromSimple("Jul", 2026),
             positions: [
                 {
-                    title: "Fullstack Product engineer",
+                    title: "Fullstack Product Engineer",
                     start: monthFromSimple("Jul", 2026),
                 },
             ],
