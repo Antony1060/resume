@@ -202,6 +202,18 @@ const InlineLogo = styled.img`
     }
 `;
 
+// small orange label next to a company name
+const Tag = styled.span`
+    color: #ffa65d;
+    font-size: 0.7rem;
+`;
+
+const HintTag = styled(Tag)`
+    cursor: help;
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+`;
+
 const CompanyHeading = styled.div`
     display: flex;
     align-items: center;
@@ -236,7 +248,10 @@ const DateRangeSubDetail: FC<ExperienceDates> = ({ start, end }) => {
 
 type Position = Extract<Experience, { positions: unknown }>["positions"][number];
 
-const PositionEntry: FC<{ position: Position }> = ({ position }) => {
+const PositionEntry: FC<{ position: Position; parentCompany?: string }> = ({
+    position,
+    parentCompany,
+}) => {
     return (
         <PositionContainer $active={!position.end}>
             <Detail>
@@ -265,14 +280,7 @@ const PositionEntry: FC<{ position: Position }> = ({ position }) => {
                             ) : (
                                 <span>{position.company}</span>
                             )}
-                            <span
-                                style={{
-                                    color: "#ffa65d",
-                                    fontSize: "0.7rem",
-                                }}
-                            >
-                                by proxy
-                            </span>
+                            <HintTag title={`Through ${parentCompany}`}>by proxy</HintTag>
                             {position.logo && <InlineLogo src={position.logo} alt="" />}
                         </div>
                     )}
@@ -287,9 +295,13 @@ const PositionEntry: FC<{ position: Position }> = ({ position }) => {
 };
 
 // positions of past experiences are collapsed behind a pure-CSS "Show more" toggle
-const Positions: FC<{ positions: Position[]; collapsed: boolean }> = ({ positions, collapsed }) => {
+const Positions: FC<{ positions: Position[]; collapsed: boolean; parentCompany?: string }> = ({
+    positions,
+    collapsed,
+    parentCompany,
+}) => {
     const entries = positions.map((position, index) => (
-        <PositionEntry key={index} position={position} />
+        <PositionEntry key={index} position={position} parentCompany={parentCompany} />
     ));
 
     if (!collapsed) return <>{entries}</>;
@@ -364,7 +376,11 @@ const Timeline: FC = () => {
                         )}
                     </MainEntryContainer>
                     {"positions" in it && (
-                        <Positions positions={it.positions} collapsed={!!it.end} />
+                        <Positions
+                            positions={it.positions}
+                            collapsed={!!it.end}
+                            parentCompany={it.company}
+                        />
                     )}
                 </Entry>
             ))}

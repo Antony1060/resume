@@ -1,6 +1,6 @@
 import ENSLogo from "/images/ens_mark.png";
 import LovableLogo from "/images/lovable.svg";
-import SimpliServersLogo from "/images/simpliservers.png";
+import NoxityLogo from "/images/noxity.png";
 import V3XLogo from "/images/v3x_logo.png";
 
 import { Month, monthNames } from "../../../lib/date";
@@ -9,6 +9,8 @@ export type Experience =
     | {
           company?: string;
           companyWebsite?: string;
+          // CSS gradient used to highlight the company name in the introduction
+          brandGradient?: string;
           logoScale?: number;
           logo?: string;
           type:
@@ -105,6 +107,9 @@ export const Experiences: Experience[] = (
         {
             company: "Lovable",
             companyWebsite: "https://lovable.dev",
+            // lovable.dev headline gradient
+            brandGradient:
+                "linear-gradient(to right, #f97a1e 0%, #f2605a 20%, #fb58bb 40%, #a64ddd 60%, #604dfd 80%, #3b6cfa 100%)",
             type: "full-time",
             logo: LovableLogo,
             logoScale: 0.8,
@@ -151,9 +156,9 @@ export const Experiences: Experience[] = (
             ],
         },
         {
-            company: "SimpliServers",
-            companyWebsite: "https://simpliservers.com",
-            logo: SimpliServersLogo,
+            company: "Noxity",
+            companyWebsite: "https://noxity.io",
+            logo: NoxityLogo,
             type: "contract",
             location: "remote",
             start: monthFromSimple("May", 2021),
@@ -171,3 +176,23 @@ export const Experiences: Experience[] = (
               }
     )
     .sort(__startEndDateExperienceSortComparator);
+
+// the role shown in the introduction: the current (ongoing) position at a company
+const currentTitle = (experience: Experience) => {
+    if ("title" in experience) return experience.title;
+
+    for (const position of experience.positions) {
+        if (position.proxy || position.end) continue;
+
+        return position.title;
+    }
+};
+
+export const currentRole = () => {
+    const current = Experiences.find((it) => !it.end && it.company);
+    const title = current && currentTitle(current);
+
+    if (!current?.company || !title) return;
+
+    return { title, company: current.company, brandGradient: current.brandGradient };
+};

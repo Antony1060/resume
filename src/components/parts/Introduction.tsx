@@ -5,6 +5,7 @@ import styled from "styled-components";
 import CVUrl from "/docs/cv.pdf";
 
 import SectionContainer, { SectionWrapper } from "../elements/SectionContainer";
+import { currentRole } from "./timeline/Experience";
 
 const Wrapper = styled(SectionWrapper)`
     display: flex;
@@ -47,22 +48,17 @@ const Connector = styled.span`
     opacity: 0.85;
 `;
 
-// Lovable gradient as used on lovable.dev headlines: orange -> pink -> purple -> blue
-const Lovable = styled.span`
-    color: #fb58bb;
-    font-weight: 600;
-    background: linear-gradient(
-        to right,
-        #f97a1e 0%,
-        #f2605a 20%,
-        #fb58bb 40%,
-        #a64ddd 60%,
-        #604dfd 80%,
-        #3b6cfa 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+const Company = styled.span<{ $gradient?: string }>`
+    ${({ $gradient }) =>
+        $gradient
+            ? `
+        font-weight: 600;
+        background: ${$gradient};
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    `
+            : ""}
 `;
 
 const NoWrap = styled.span`
@@ -123,16 +119,21 @@ const contacts = [
 ];
 
 const Introduction: FC = () => {
+    const role = currentRole();
+
     return (
         <SectionContainer name="Introduction" style={Wrapper} after={<CVButton />}>
             <Info>
                 <Name>Antonio Fran Trstenjak</Name>
-                <Headline>
-                    Fullstack Product Engineer{" "}
-                    <NoWrap>
-                        <Connector>@</Connector> <Lovable>Lovable</Lovable>
-                    </NoWrap>
-                </Headline>
+                {role && (
+                    <Headline>
+                        {role.title}{" "}
+                        <NoWrap>
+                            <Connector>@</Connector>{" "}
+                            <Company $gradient={role.brandGradient}>{role.company}</Company>
+                        </NoWrap>
+                    </Headline>
+                )}
                 <Location>Stockholm, Sweden</Location>
             </Info>
             <Links>
