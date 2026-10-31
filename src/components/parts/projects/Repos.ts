@@ -1,4 +1,4 @@
-export type AcceptedLanguages = "TypeScript" | "React" | "C" | "Rust";
+export type AcceptedLanguages = "TypeScript" | "React" | "C" | "Rust" | "Hackathon";
 
 export const languageColor = (language: AcceptedLanguages) => {
     switch (language) {
@@ -10,6 +10,8 @@ export const languageColor = (language: AcceptedLanguages) => {
             return "#555555";
         case "Rust":
             return "#9a6039";
+        case "Hackathon":
+            return "#fc5837";
     }
 };
 
@@ -19,33 +21,29 @@ export type Repo = {
     orgDisplay?: boolean;
     description: string;
     language: AcceptedLanguages;
-    type: "website" | "library" | "project";
+    type: "website" | "library" | "project" | "hackathon";
     link?: string;
+    // private repositories link the title to `link` instead of GitHub
+    private?: boolean;
     part: "contributor" | "creator";
 };
 
 // a great way to limit array size ik
 export const Repos: [Repo, Repo, Repo, Repo, Repo, Repo] = [
     {
-        name: "gas-orm",
-        description: "Postgres ORM focusing on compile-time safety while heavily using macros.",
-        language: "Rust",
-        type: "library",
-        part: "creator",
+        name: "AlgoTrade 2026",
+        description: "Infrastructure for a 300-person algorithmic trading hackathon.",
+        language: "Hackathon",
+        type: "hackathon",
+        link: "https://algotrade.xfer.hr",
+        private: true,
+        part: "contributor",
     },
     {
         name: "dbger.c",
         description: "GDB-inspired x86_64 Linux debugger and ELF disassembler.",
         language: "C",
         type: "project",
-        part: "creator",
-    },
-    {
-        name: "resume",
-        description: "My personal resume website written in React, i.e. this website.",
-        language: "React",
-        type: "website",
-        link: "https://antony.wiki",
         part: "creator",
     },
     {
@@ -69,11 +67,18 @@ export const Repos: [Repo, Repo, Repo, Repo, Repo, Repo] = [
         part: "contributor",
     },
     {
-        name: "enstate",
-        org: "v3xlabs",
-        description: "ENS JSON API & Cloudflare Worker.",
+        name: "gas-orm",
+        description: "Postgres ORM focusing on compile-time safety while heavily using macros.",
         language: "Rust",
         type: "library",
-        part: "contributor",
+        part: "creator",
+    },
+    {
+        name: "resume",
+        description: "My personal resume website written in React, i.e. this website.",
+        language: "React",
+        type: "website",
+        link: "https://antony.wiki",
+        part: "creator",
     },
 ];

@@ -22,10 +22,10 @@ const Wrapper = styled(SectionWrapper)`
     }
 `;
 
-const Repositories: FC = () => {
+const Projects: FC = () => {
     return (
         <SectionContainer
-            name="Repositories"
+            name="Projects"
             style={Wrapper}
             after={
                 <WhiteLink
@@ -44,4 +44,4 @@ const Repositories: FC = () => {
     );
 };
 
-export default Repositories;
+export default Projects;

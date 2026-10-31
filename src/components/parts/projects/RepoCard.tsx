@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Book, Code, Globe, User, Users } from "react-feather";
+import { Book, Code, Globe, TrendingUp, User, Users } from "react-feather";
 import styled from "styled-components";
 
 import { AcceptedLanguages, languageColor, Repo } from "./Repos";
@@ -90,11 +90,17 @@ const RepoCard: FC<{ repo: Repo }> = ({ repo }) => {
                     <Book size={iconSize} />
                 ) : repo.type === "website" ? (
                     <Globe size={iconSize} />
+                ) : repo.type === "hackathon" ? (
+                    <TrendingUp size={iconSize} />
                 ) : (
                     <Code size={iconSize} />
                 )}
                 <Link
-                    href={`https://github.com/${repo.org ?? "antony1060"}/${repo.name}`}
+                    href={
+                        repo.private
+                            ? repo.link
+                            : `https://github.com/${repo.org ?? "antony1060"}/${repo.name}`
+                    }
                     target="_blank"
                 >
                     <Org>{repo.orgDisplay !== false && repo.org ? repo.org + "/" : ""}</Org>

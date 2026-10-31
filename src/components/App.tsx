@@ -4,7 +4,7 @@ import Navbar from "./navbar/Navbar";
 import GithubCalendar from "./parts/calendar/GithubCalendar";
 import Education from "./parts/education/Education";
 import Introduction from "./parts/Introduction";
-import Repositories from "./parts/repositories/Repositories";
+import Projects from "./parts/projects/Projects";
 import Skillset from "./parts/skillset/Skillset";
 import Timeline from "./parts/timeline/Timeline";
 
@@ -91,7 +91,7 @@ function App() {
                     <Timeline />
                     <Education />
                     <Skillset />
-                    <Repositories />
+                    <Projects />
                     <GithubCalendar />
                 </ContentContainer>
                 <Version
