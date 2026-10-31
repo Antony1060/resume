@@ -2,29 +2,29 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import BashLogo from "/images/bash.svg";
+import CargoLogo from "/images/cargo.png";
 import CassandraLogo from "/images/cassandra.webp";
+import CppLogo from "/images/cpp.svg";
 import DockerLogo from "/images/docker.webp";
+import GdbLogo from "/images/gdb.svg";
 import GitLogo from "/images/git.webp";
+import GithubActionsLogo from "/images/githubactions.svg";
 import GoLogo from "/images/golang.svg";
-import GradleLogo from "/images/gradle.svg";
 import JavaLogo from "/images/java.svg";
-import KotlinLogo from "/images/kotlin.webp";
 import KubernetesLogo from "/images/kubernetes.svg";
+import LinuxLogo from "/images/linux.svg";
+import MakeLogo from "/images/make.svg";
 import MongoLogo from "/images/mongo.svg";
 import MySqlLogo from "/images/mysql.webp";
-import NodeLogo from "/images/nodejs.webp";
-import PnpmLogo from "/images/pnpm.svg";
 import PostgresLogo from "/images/postgresql.webp";
+import PrometheusLogo from "/images/prometheus.svg";
 import PythonLogo from "/images/python.webp";
-import ReactLogo from "/images/react.svg";
+import QemuLogo from "/images/qemu.svg";
 import RedisLogo from "/images/redis.svg";
 import RustLogo from "/images/rust.webp";
-import SassLogo from "/images/sass.webp";
 import ScyllaLogo from "/images/scylla.svg";
-import SvelteLogo from "/images/svelte.svg";
-import TailwindCSS from "/images/tailwindcss.svg";
 import TsLogo from "/images/typescript.webp";
-import ViteLogo from "/images/vite.svg";
+import VimLogo from "/images/vim.svg";
 
 import SectionContainer, { SectionWrapper } from "../../elements/SectionContainer";
 import Skill from "./Skill";
@@ -117,29 +117,29 @@ const SubWrapperFourth = styled(SubWrapper)`
 const Skillset: FC = () => {
     return (
         <SectionContainer name="Skill set" style={Wrapper}>
-            <SectionContainer name="Languages" style={SubWrapperThird}>
-                <Skill name="TypeScript" icon={TsLogo} />
+            <SectionContainer name="Languages" style={SubWrapperFirst}>
                 <Skill name="Rust" icon={RustLogo} />
-                <Skill name="Java" icon={JavaLogo} />
-                <Skill name="Kotlin" icon={KotlinLogo} />
+                <Skill name="C/C++" icon={CppLogo} imgHeight={1.8} />
                 <Skill name="Go" icon={GoLogo} />
+                <Skill name="TypeScript" icon={TsLogo} />
                 <Skill name="Python" icon={PythonLogo} />
+                <Skill name="Java" icon={JavaLogo} />
             </SectionContainer>
             <SectionContainer name="Tools" style={SubWrapperSecond}>
                 <Skill name="Git" icon={GitLogo} imgHeight={1.6} />
-                <Skill name="Docker" icon={DockerLogo} imgHeight={1.4} />
                 <Skill name="Bash" icon={BashLogo} imgHeight={2} />
-                <Skill name="PNPM" icon={PnpmLogo} imgHeight={1.8} />
-                <Skill name="Gradle" icon={GradleLogo} imgHeight={1.4} />
-                <Skill name="Vite" icon={ViteLogo} imgHeight={1.6} />
+                <Skill name="Vim" icon={VimLogo} imgHeight={1.8} />
+                <Skill name="GDB" icon={GdbLogo} imgHeight={1.5} />
+                <Skill name="Make" icon={MakeLogo} imgHeight={1.8} />
+                <Skill name="Cargo" icon={CargoLogo} imgHeight={1.8} />
             </SectionContainer>
-            <SectionContainer name="Technologies" style={SubWrapperFirst}>
-                <Skill name="React" icon={ReactLogo} />
-                <Skill name="TailwindCSS" icon={TailwindCSS} imgHeight={1.2} />
+            <SectionContainer name="Infrastructure" style={SubWrapperThird}>
+                <Skill name="Linux" icon={LinuxLogo} />
+                <Skill name="Docker" icon={DockerLogo} imgHeight={1.4} />
                 <Skill name="Kubernetes" icon={KubernetesLogo} imgHeight={1.8} />
-                <Skill name="NodeJS" icon={NodeLogo} imgHeight={1.8} />
-                <Skill name="Svelte" icon={SvelteLogo} />
-                <Skill name="SCSS" icon={SassLogo} imgHeight={1.6} />
+                <Skill name="QEMU" icon={QemuLogo} imgHeight={1.8} />
+                <Skill name="Prometheus" icon={PrometheusLogo} imgHeight={1.7} />
+                <Skill name="GH Actions" icon={GithubActionsLogo} imgHeight={1.6} />
             </SectionContainer>
             <SectionContainer name="Databases" style={SubWrapperFourth}>
                 <Skill name="PostgreSQL" icon={PostgresLogo} imgHeight={1.8} />
