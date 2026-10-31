@@ -1,127 +1,103 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import { FC } from "react";
-import { Info } from "react-feather";
 import styled from "styled-components";
 
-import { Percent } from "../../../lib/Percent";
+import { monthNames } from "../../../lib/date";
 import SectionContainer from "../../elements/SectionContainer";
-import EducationPoint from "./EducationPoint";
+import { formatSimpleDate } from "../timeline/Experience";
 
-const [UNI_ECTS, UNI_ECTS_MAX] = [165, 180] as const;
-
-const Container = styled.div`
-    display: flex;
-    justify-content: stretch;
-    align-items: center;
-    padding: 1rem 2rem 2.4rem;
-`;
-
-export type EducationStatus = "passed" | "active" | "future";
-
-const Connector = styled.div<{ status: EducationStatus; $squish?: boolean }>`
-    height: 10px;
-    ${({ $squish }) =>
-        !$squish
-            ? `
-        flex-grow: 1;
-    `
-            : `
-        width: 8rem;
-    `}
-    margin: 0 -10px;
-    background-color: ${({ status }) =>
-        status === "passed" ? "#3f5c96" : status === "active" ? "#55e480" : "#272b33"};
-    position: relative;
-`;
-
-const InfoContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-
-    &:hover div {
-        visibility: visible;
-    }
-`;
-
-const InfoHover = styled.div`
-    position: absolute;
-    left: 50%;
-    top: calc(-100% - 1.4rem);
-    display: flex;
-    width: 200px;
-    transform: translateX(-50%) translateY(-50%);
-    visibility: hidden;
-    background-color: #282c32ee;
-    border: 1px solid gray;
-    padding: 0.4rem;
-    border-radius: 4px;
-    text-align: center;
-    font-size: 0.9rem;
-    z-index: 10;
-
-    @media (max-width: 1050px) {
-        left: calc(200% + 0.6rem);
-        transform: translateX(-100%) translateY(-50%);
-    }
-`;
-
-const InfoAlert: FC = () => {
-    return (
-        <InfoContainer>
-            <Info size={20} />
-            <InfoHover>
-                All information is displayed in accordance with the Croatian education system.
-            </InfoHover>
-        </InfoContainer>
-    );
+const University = {
+    name: "Algebra Bernays University",
+    website: "https://www.algebra.hr",
+    location: "Zagreb, Croatia",
+    degree: "BSc in Software engineering",
+    start: new Date(2023, monthNames.indexOf("Sep")),
+    end: new Date(2027, monthNames.indexOf("Feb")),
 };
 
+const Entry = styled.div`
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    row-gap: 0.3rem;
+
+    * {
+        font-family: "JetBrains Mono", monospace;
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+`;
+
+const Name = styled.a`
+    color: white;
+    font-size: 1rem;
+    text-decoration-color: transparent;
+    transition: all 50ms linear;
+    width: fit-content;
+
+    &:hover {
+        text-decoration-color: white;
+    }
+`;
+
+const Degree = styled.span`
+    color: #dfdfdf;
+    font-size: 0.94rem;
+
+    @media (max-width: 600px) {
+        order: 1;
+    }
+`;
+
+const Aside = styled.span`
+    font-size: 0.9rem;
+    opacity: 0.6;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 0.4rem;
+
+    @media (max-width: 600px) {
+        text-align: left;
+        justify-content: flex-start;
+        order: 2;
+    }
+`;
+
+const Dates = styled(Aside)`
+    opacity: 1;
+
+    & > span:first-child {
+        opacity: 0.6;
+    }
+`;
+
+const ExpectedTag = styled.span`
+    color: #ffa65d;
+    font-size: 0.7rem;
+`;
+
 const Education: FC = () => {
+    const expected = University.end.getTime() > Date.now();
+
     return (
-        <SectionContainer name="Education" after={<InfoAlert />}>
-            <Container>
-                <EducationPoint
-                    status="passed"
-                    description="Elementary education"
-                    descriptionAlignment="left"
-                    detail={{
-                        name: "OŠ Malešnica",
-                        location: "Zagreb, Croatia",
-                        years: 8,
-                        progress: Percent(1),
-                    }}
-                />
-                <Connector status="passed" />
-                <EducationPoint
-                    status="passed"
-                    description="High school"
-                    detail={{
-                        name: "XIII. Gymnasium",
-                        location: "Zagreb, Croatia",
-                        years: 4,
-                        progress: Percent(1),
-                    }}
-                />
-                <Connector status="passed" />
-                <EducationPoint
-                    status="active"
-                    description="University"
-                    descriptionAlignment="right"
-                    detail={{
-                        name: "Algebra University",
-                        location: "Zagreb, Croatia",
-                        years: 3,
-                        degree: {
-                            type: "Bachelors",
-                            study: "computer engineering",
-                        },
-                        progress: Percent(+(UNI_ECTS / UNI_ECTS_MAX)),
-                    }}
-                />
-            </Container>
+        <SectionContainer name="Education">
+            <Entry>
+                <Name target="_blank" href={University.website} rel="noreferrer">
+                    {University.name}
+                </Name>
+                <Dates>
+                    <span>
+                        {formatSimpleDate(University.start)} - {formatSimpleDate(University.end)}
+                    </span>
+                    {expected && <ExpectedTag>expected</ExpectedTag>}
+                </Dates>
+                <Degree>{University.degree}</Degree>
+                <Aside>{University.location}</Aside>
+            </Entry>
         </SectionContainer>
     );
 };

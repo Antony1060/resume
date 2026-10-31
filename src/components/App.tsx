@@ -88,8 +88,8 @@ function App() {
                 </NavbarContainer>
                 <ContentContainer>
                     <Introduction />
-                    <Education />
                     <Timeline />
+                    <Education />
                     <Skillset />
                     <Repositories />
                     <GithubCalendar />
