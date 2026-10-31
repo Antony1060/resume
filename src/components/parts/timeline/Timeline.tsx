@@ -6,6 +6,7 @@ import SectionContainer, { SectionWrapper } from "../../elements/SectionContaine
 import { WhiteLink } from "../../elements/WhiteLink";
 import {
     diffDates,
+    Experience,
     ExperienceDates,
     Experiences,
     formatDiff,
@@ -48,6 +49,54 @@ const PositionContainer = styled.div<{ $active: boolean }>`
     @media (max-width: 600px) {
         margin-left: 1rem;
         margin-right: 0.2rem;
+    }
+`;
+
+const ShowMore = styled.summary`
+    margin-left: 2rem;
+    margin-right: 0.4rem;
+    border: 1px dashed #363a40;
+    border-top: 0;
+    padding: 0.4rem 0.6rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+
+    &::before {
+        content: "▸ Show more";
+    }
+
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+        margin-left: 1rem;
+        margin-right: 0.2rem;
+    }
+
+    @media print {
+        display: none;
+    }
+`;
+
+const Collapsible = styled.details`
+    &[open] > ${ShowMore}::before {
+        content: "▾ Show less";
+    }
+
+    @media print {
+        &::details-content {
+            content-visibility: visible;
+        }
     }
 `;
 
@@ -131,6 +180,73 @@ const DateRangeSubDetail: FC<ExperienceDates> = ({ start, end }) => {
     );
 };
 
+type Position = Extract<Experience, { positions: unknown }>["positions"][number];
+
+const PositionEntry: FC<{ position: Position }> = ({ position }) => {
+    return (
+        <PositionContainer $active={!position.end}>
+            <Detail>
+                <span style={{ color: "#dfdfdf", fontSize: "0.94rem" }}>
+                    {!position.proxy ? (
+                        position.title
+                    ) : (
+                        <div
+                            style={{
+                                display: "flex",
+                                gap: "0.4rem",
+                                alignItems: "center",
+                            }}
+                        >
+                            {position.companyWebsite ? (
+                                <CompanyWebsiteLink
+                                    target={"_blank"}
+                                    href={position.companyWebsite}
+                                    rel="noreferrer"
+                                    style={{
+                                        color: "#dfdfdf",
+                                    }}
+                                >
+                                    {position.company}
+                                </CompanyWebsiteLink>
+                            ) : (
+                                <span>{position.company}</span>
+                            )}
+                            <span
+                                style={{
+                                    color: "#ffa65d",
+                                    fontSize: "0.7rem",
+                                }}
+                            >
+                                by proxy
+                            </span>
+                        </div>
+                    )}
+                </span>
+                <DateRangeSubDetail start={position.start} end={position.end} />
+            </Detail>
+            {position.proxy && position.logo && (
+                <PositionProxyLogo src={position.logo} alt={position.company + " logo"} />
+            )}
+        </PositionContainer>
+    );
+};
+
+// positions of past experiences are collapsed behind a pure-CSS "Show more" toggle
+const Positions: FC<{ positions: Position[]; collapsed: boolean }> = ({ positions, collapsed }) => {
+    const entries = positions.map((position, index) => (
+        <PositionEntry key={index} position={position} />
+    ));
+
+    if (!collapsed) return <>{entries}</>;
+
+    return (
+        <Collapsible>
+            <ShowMore />
+            {entries}
+        </Collapsible>
+    );
+};
+
 const Timeline: FC = () => {
     return (
         <SectionContainer
@@ -197,56 +313,9 @@ const Timeline: FC = () => {
                             />
                         )}
                     </MainEntryContainer>
-                    {"positions" in it &&
-                        it.positions.map((position, positionIndex) => (
-                            <PositionContainer $active={!position.end} key={positionIndex}>
-                                <Detail>
-                                    <span style={{ color: "#dfdfdf", fontSize: "0.94rem" }}>
-                                        {!position.proxy ? (
-                                            position.title
-                                        ) : (
-                                            <div
-                                                style={{
-                                                    display: "flex",
-                                                    gap: "0.4rem",
-                                                    alignItems: "center",
-                                                }}
-                                            >
-                                                {position.companyWebsite ? (
-                                                    <CompanyWebsiteLink
-                                                        target={"_blank"}
-                                                        href={position.companyWebsite}
-                                                        rel="noreferrer"
-                                                        style={{
-                                                            color: "#dfdfdf",
-                                                        }}
-                                                    >
-                                                        {position.company}
-                                                    </CompanyWebsiteLink>
-                                                ) : (
-                                                    <span>{position.company}</span>
-                                                )}
-                                                <span
-                                                    style={{
-                                                        color: "#ffa65d",
-                                                        fontSize: "0.7rem",
-                                                    }}
-                                                >
-                                                    by proxy
-                                                </span>
-                                            </div>
-                                        )}
-                                    </span>
-                                    <DateRangeSubDetail start={position.start} end={position.end} />
-                                </Detail>
-                                {position.proxy && position.logo && (
-                                    <PositionProxyLogo
-                                        src={position.logo}
-                                        alt={position.company + " logo"}
-                                    />
-                                )}
-                            </PositionContainer>
-                        ))}
+                    {"positions" in it && (
+                        <Positions positions={it.positions} collapsed={!!it.end} />
+                    )}
                 </Entry>
             ))}
         </SectionContainer>
