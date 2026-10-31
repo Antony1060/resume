@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FileText } from "react-feather";
+import { FileText, GitHub, Linkedin, Mail } from "react-feather";
 import styled from "styled-components";
 
 import CVUrl from "/docs/cv.pdf";
@@ -7,120 +7,98 @@ import CVUrl from "/docs/cv.pdf";
 import SectionContainer, { SectionWrapper } from "../elements/SectionContainer";
 
 const Wrapper = styled(SectionWrapper)`
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-
-    @media (max-width: 900px) {
-        grid-template-columns: minmax(0, 1fr);
-    }
-`;
-
-const InfoContainer = styled.div`
-    background-color: #0d1117;
-    border: 1px solid #dadada;
     display: flex;
-    flex-direction: column;
-    padding: 1rem 0;
-    gap: 1rem;
-    font-size: 1.1rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1.6rem 1.5rem;
 
-    &,
     * {
         font-family: "JetBrains Mono", monospace;
     }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.4rem 1rem;
+    }
 `;
 
-const Name = styled.div`
-    padding: 0 0 0.8rem 0;
-    border-bottom: 1px dotted #dddddd;
-    text-align: center;
-`;
-
-const DetailContainer = styled.div`
-    padding: 0 1rem;
+const Info = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    flex-grow: 1;
-    justify-content: center;
+    gap: 0.5rem;
 `;
 
-const DetailPart = styled.span<{ $mobileFriendly?: boolean }>`
-    font-size: 1rem;
-    display: flex;
-    justify-content: space-between;
-    gap: 0.4rem;
-
-    span:first-child {
-        color: #dadada;
-        font-weight: 600;
-        flex-shrink: 0;
-    }
-
-    span:last-child,
-    a {
-        color: #ffd173;
-        font-weight: 200;
-        flex-shrink: 0;
-    }
-
-    a {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-    ${({ $mobileFriendly }) =>
-        $mobileFriendly
-            ? `
-        @media (max-width: 500px) {
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-    `
-            : ""}
+const Name = styled.span`
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
 `;
 
-const Filler = styled.span<{ $mobileFriendly?: boolean }>`
-    overflow: hidden;
-    white-space: nowrap;
-    opacity: 0.2;
-
-    ${({ $mobileFriendly }) =>
-        $mobileFriendly
-            ? `
-        @media (max-width: 500px) {
-            display: none;
-        }
-    `
-            : ""}
+const Headline = styled.span`
+    font-size: 0.95rem;
+    color: #ffd173;
 `;
 
-const Detail: FC<{ name: string; value: string; href?: string; mobileFriendly?: boolean }> = ({
-    name,
-    value,
-    href,
-    mobileFriendly,
-}) => {
-    return (
-        <DetailPart $mobileFriendly={mobileFriendly}>
-            <span>{name}</span>
-            <Filler $mobileFriendly={mobileFriendly}>
-                ................................................................
-            </Filler>
-            {href ? (
-                <a href={href} target="_blank" rel="noreferrer">
-                    {value}
-                </a>
-            ) : (
-                <span>{value}</span>
-            )}
-        </DetailPart>
+const Connector = styled.span`
+    color: #dfdfdf;
+    font-weight: 200;
+    opacity: 0.85;
+`;
+
+// Lovable brand gradient preset "Horizontal Cool" (https://lovablebrand.lovable.app/brand/colors)
+const Lovable = styled.span`
+    color: #b0acfe;
+    font-weight: 600;
+    background: linear-gradient(
+        to right,
+        #4f88ff 0%,
+        #5185ff 8%,
+        #5885ff 17%,
+        #6289ff 25%,
+        #7491ff 33%,
+        #91a0ff 42%,
+        #b0acfe 50%,
+        #ceaffb 58%,
+        #e2a5f2 67%,
+        #f388de 75%,
+        #fb65c2 83%,
+        #fd49a8 92%,
+        #fd2980 100%
     );
-};
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+`;
+
+const NoWrap = styled.span`
+    white-space: nowrap;
+`;
+
+const Location = styled.span`
+    font-size: 0.9rem;
+    opacity: 0.6;
+`;
+
+const Links = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+`;
+
+const IconLink = styled.a`
+    display: flex;
+    color: white;
+    opacity: 0.8;
+    transition: opacity 50ms linear;
+
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+    }
+`;
 
 const CVButtonContainer = styled.a`
     display: flex;
@@ -145,36 +123,39 @@ const CVButton: FC = () => {
     );
 };
 
+const contacts = [
+    { label: "E-Mail", href: "mailto:atrstenjak@has.consulting", Icon: Mail },
+    { label: "LinkedIn", href: "https://linkedin.com/in/antoniotrstenjak", Icon: Linkedin },
+    { label: "GitHub", href: "https://github.com/antony1060", Icon: GitHub },
+];
+
 const Introduction: FC = () => {
     return (
         <SectionContainer name="Introduction" style={Wrapper} after={<CVButton />}>
-            <InfoContainer>
+            <Info>
                 <Name>Antonio Fran Trstenjak</Name>
-                <DetailContainer>
-                    <Detail
-                        mobileFriendly
-                        name="E-Mail"
-                        value="atrstenjak@has.consulting"
-                        href="mailto:atrstenjak@has.consulting"
-                    />
-                    <Detail
-                        mobileFriendly
-                        name="Linked In"
-                        value="/in/antoniotrstenjak"
-                        href="https://linkedin.com/in/antoniotrstenjak"
-                    />
-                    <Detail name="GitHub" value="Antony1060" href="https://github.com/antony1060" />
-                    <Detail name="Location" value="Stockholm, Sweden" />
-                </DetailContainer>
-            </InfoContainer>
-            <InfoContainer>
-                <Name>Languages</Name>
-                <DetailContainer>
-                    <Detail mobileFriendly name="English" value="Full professional proficiency" />
-                    <Detail mobileFriendly name="Croatian" value="Native proficiency" />
-                    <Detail mobileFriendly name="German" value="Limited working proficiency" />
-                </DetailContainer>
-            </InfoContainer>
+                <Headline>
+                    Fullstack Product Engineer{" "}
+                    <NoWrap>
+                        <Connector>@</Connector> <Lovable>Lovable</Lovable>
+                    </NoWrap>
+                </Headline>
+                <Location>Stockholm, Sweden</Location>
+            </Info>
+            <Links>
+                {contacts.map(({ label, href, Icon }) => (
+                    <IconLink
+                        key={label}
+                        href={href}
+                        target={href.startsWith("mailto:") ? undefined : "_blank"}
+                        rel="noreferrer"
+                        aria-label={label}
+                        title={label}
+                    >
+                        <Icon size={20} />
+                    </IconLink>
+                ))}
+            </Links>
         </SectionContainer>
     );
 };
