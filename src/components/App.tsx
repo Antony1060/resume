@@ -91,9 +91,9 @@ function App() {
                     <Introduction />
                     <Timeline />
                     <Education />
-                    <Skillset />
                     <Projects />
                     <Achievements />
+                    <Skillset />
                     <GithubCalendar />
                 </ContentContainer>
                 <Version
