@@ -122,11 +122,6 @@ export const Experiences: Experience[] = (
                     end: monthFromSimple("Mar", 2024),
                 },
                 {
-                    title: "Team lead - ENS Cards",
-                    start: monthFromSimple("Mar", 2023),
-                    end: monthFromSimple("Mar", 2024),
-                },
-                {
                     proxy: true,
                     logo: ENSLogo,
                     company: "Ethereum Name Service",
