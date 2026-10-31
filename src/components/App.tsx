@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 import Navbar from "./navbar/Navbar";
+import Achievements from "./parts/achievements/Achievements";
 import GithubCalendar from "./parts/calendar/GithubCalendar";
 import Education from "./parts/education/Education";
 import Introduction from "./parts/Introduction";
@@ -92,6 +93,7 @@ function App() {
                     <Education />
                     <Skillset />
                     <Projects />
+                    <Achievements />
                     <GithubCalendar />
                 </ContentContainer>
                 <Version
