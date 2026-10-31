@@ -114,22 +114,30 @@ const Detail = styled.div`
     }
 
     @media (max-width: 450px) {
-        gap: 0.4rem;
         width: 100%;
     }
 `;
 
+// items separated by bullets that disappear when an item wraps to a new line:
+// every item draws a leading bullet in the space its negative margin creates,
+// and the bullet of an item starting a line falls outside the box and is clipped
 const SubDetail = styled.span`
     opacity: 0.6;
     font-size: 0.9rem;
     display: flex;
-    gap: 0.4rem;
+    flex-wrap: wrap;
+    column-gap: calc(1ch + 0.8rem);
+    overflow: hidden;
 
-    @media (max-width: 450px) {
-        flex-direction: column;
-        gap: 0;
-        padding: 0.2rem 0.4rem;
-        border: 1px dashed #24282e;
+    & > * {
+        margin-left: calc(-1ch - 0.8rem);
+    }
+
+    & > *::before {
+        content: "\\2022";
+        display: inline-block;
+        width: 1ch;
+        margin: 0 0.4rem;
     }
 `;
 
@@ -145,10 +153,6 @@ const RoleInfo = styled.div`
         align-items: stretch;
         gap: 0;
     }
-
-    @media (max-width: 450px) {
-        gap: 0.4rem;
-    }
 `;
 
 const RoleTitle = styled.span`
@@ -163,12 +167,6 @@ const RoleBullet = styled.span`
     font-size: 0.9rem;
 
     @media (max-width: 700px) {
-        display: none;
-    }
-`;
-
-const Bullet = styled.span`
-    @media (max-width: 450px) {
         display: none;
     }
 `;
@@ -231,7 +229,6 @@ const DateRangeSubDetail: FC<ExperienceDates> = ({ start, end }) => {
             <span>
                 {formatSimpleDate(start)} - {end ? formatSimpleDate(end) : "Present"}
             </span>
-            <Bullet>&bull;</Bullet>
             <span>{formatDiff(diffDates(start, end ?? new Date()))}</span>
         </SubDetail>
     );
@@ -351,7 +348,6 @@ const Timeline: FC = () => {
                                 )}
                                 <SubDetail>
                                     <span>{formatExperienceType(it.type)}</span>
-                                    <Bullet>&bull;</Bullet>
                                     <span style={{ textTransform: "capitalize" }}>
                                         {it.location}
                                     </span>
