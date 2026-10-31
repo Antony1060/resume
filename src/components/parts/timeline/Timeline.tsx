@@ -109,6 +109,10 @@ const Detail = styled.div`
         font-family: "JetBrains Mono", monospace;
     }
 
+    @media (max-width: 600px) {
+        flex-grow: 1;
+    }
+
     @media (max-width: 450px) {
         gap: 0.4rem;
         width: 100%;
@@ -187,6 +191,25 @@ const PositionProxyLogo = styled.img`
     }
 `;
 
+// small logo shown next to the name on mobile, where the big logos are hidden
+const InlineLogo = styled.img`
+    display: none;
+    height: 1.1rem;
+    width: auto;
+    border-radius: 3px;
+    margin-left: auto;
+
+    @media (max-width: 600px) {
+        display: block;
+    }
+`;
+
+const CompanyHeading = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+`;
+
 const CompanyWebsiteLink = styled.a`
     display: flex;
     align-items: center;
@@ -253,6 +276,7 @@ const PositionEntry: FC<{ position: Position }> = ({ position }) => {
                             >
                                 by proxy
                             </span>
+                            {position.logo && <InlineLogo src={position.logo} alt="" />}
                         </div>
                     )}
                 </span>
@@ -311,7 +335,10 @@ const Timeline: FC = () => {
                     <MainEntryContainer $active={!it.end}>
                         <Detail>
                             {it.company ? (
-                                <CompanyName name={it.company} website={it.companyWebsite} />
+                                <CompanyHeading>
+                                    <CompanyName name={it.company} website={it.companyWebsite} />
+                                    {it.logo && <InlineLogo src={it.logo} alt="" />}
+                                </CompanyHeading>
                             ) : (
                                 "title" in it && <span>{it.title}</span>
                             )}
