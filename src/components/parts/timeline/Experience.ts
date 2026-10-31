@@ -70,6 +70,10 @@ export const formatDiff = (diff: Diff) => {
 const __startEndDateExperienceSortComparator = (a: ExperienceDates, b: ExperienceDates) => {
     if (!!a.end !== !!b.end) return a.end ? 1 : -1;
 
+    // past experiences: most recently ended first
+    if (a.end && b.end && a.end.getTime() !== b.end.getTime())
+        return b.end.getTime() - a.end.getTime();
+
     return b.start.getTime() - a.start.getTime();
 };
 
@@ -106,6 +110,15 @@ export const Experiences: Experience[] = (
                     start: monthFromSimple("Jul", 2026),
                 },
             ],
+        },
+        {
+            company: "HM4",
+            companyWebsite: "https://hm4.dev",
+            type: "freelance",
+            location: "remote",
+            start: monthFromSimple("Mar", 2024),
+            end: monthFromSimple("Jun", 2026),
+            title: "Full-stack Developer",
         },
         {
             company: "V3X Labs",
