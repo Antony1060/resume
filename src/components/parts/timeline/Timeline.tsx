@@ -299,7 +299,7 @@ const Timeline: FC = () => {
             after={
                 <WhiteLink
                     aria-label="LinkedIn Icon"
-                    href="https://linkedin.com/in/antony1060"
+                    href="https://linkedin.com/in/antoniotrstenjak"
                     target="_blank"
                 >
                     <Linkedin size={20} />

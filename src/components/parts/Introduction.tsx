@@ -138,7 +138,7 @@ const CVButtonContainer = styled.a`
 
 const CVButton: FC = () => {
     return (
-        <CVButtonContainer target={"_blankž"} href={CVUrl}>
+        <CVButtonContainer target="_blank" href={CVUrl}>
             <FileText size={16} />
             <span>CV</span>
         </CVButtonContainer>
@@ -152,21 +152,19 @@ const Introduction: FC = () => {
                 <Name>Antonio Fran Trstenjak</Name>
                 <DetailContainer>
                     <Detail
+                        mobileFriendly
                         name="E-Mail"
                         value="atrstenjak@has.consulting"
                         href="mailto:atrstenjak@has.consulting"
                     />
                     <Detail
+                        mobileFriendly
                         name="Linked In"
                         value="/in/antoniotrstenjak"
                         href="https://linkedin.com/in/antoniotrstenjak"
                     />
                     <Detail name="GitHub" value="Antony1060" href="https://github.com/antony1060" />
-                    <Detail
-                        name="Twitter"
-                        value="@AntonyThe1060"
-                        href="https://twitter.com/AntonyThe1060"
-                    />
+                    <Detail name="Location" value="Stockholm, Sweden" />
                 </DetailContainer>
             </InfoContainer>
             <InfoContainer>

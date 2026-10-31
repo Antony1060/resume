@@ -59,12 +59,18 @@ export const diffDates = (start: Date, end: Date): Diff => {
     return { years, months: months % 12 };
 };
 
+const plural = (count: number, singular: string, multiple: string) =>
+    `${count} ${count === 1 ? singular : multiple}`;
+
 export const formatDiff = (diff: Diff) => {
-    if (diff.years === 0) return `${Math.max(1, diff.months)} mos`;
+    const years = plural(diff.years, "yr", "yrs");
+    const months = plural(Math.max(1, diff.months), "mo", "mos");
 
-    if (diff.months === 0) return `${diff.years} yrs`;
+    if (diff.years === 0) return months;
 
-    return `${diff.years} yrs, ${diff.months} mos`;
+    if (diff.months === 0) return years;
+
+    return `${years}, ${plural(diff.months, "mo", "mos")}`;
 };
 
 const __startEndDateExperienceSortComparator = (a: ExperienceDates, b: ExperienceDates) => {
@@ -88,7 +94,7 @@ export const formatExperienceType = (type: Experience["type"]): string => {
         case "full-time":
             return "Full time";
         case "part-time":
-            return "Part tiem";
+            return "Part time";
         case "self-employed":
             return "Self-employed";
     }
@@ -118,7 +124,7 @@ export const Experiences: Experience[] = (
             location: "remote",
             start: monthFromSimple("Mar", 2024),
             end: monthFromSimple("Jun", 2026),
-            title: "Full-stack Developer",
+            title: "Fullstack Developer",
         },
         {
             company: "V3X Labs",
@@ -126,12 +132,12 @@ export const Experiences: Experience[] = (
             type: "contract",
             logo: V3XLogo,
             location: "remote",
-            start: monthFromSimple("Dec", 2021),
+            start: monthFromSimple("Dec", 2022),
             end: monthFromSimple("Mar", 2024),
             positions: [
                 {
                     title: "Research & Development engineer",
-                    start: monthFromSimple("Dec", 2021),
+                    start: monthFromSimple("Dec", 2022),
                     end: monthFromSimple("Mar", 2024),
                 },
                 {
