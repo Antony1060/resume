@@ -47,25 +47,18 @@ const Connector = styled.span`
     opacity: 0.85;
 `;
 
-// Lovable brand gradient preset "Horizontal Cool" (https://lovablebrand.lovable.app/brand/colors)
+// Lovable gradient as used on lovable.dev headlines: orange -> pink -> purple -> blue
 const Lovable = styled.span`
-    color: #b0acfe;
+    color: #fb58bb;
     font-weight: 600;
     background: linear-gradient(
         to right,
-        #4f88ff 0%,
-        #5185ff 8%,
-        #5885ff 17%,
-        #6289ff 25%,
-        #7491ff 33%,
-        #91a0ff 42%,
-        #b0acfe 50%,
-        #ceaffb 58%,
-        #e2a5f2 67%,
-        #f388de 75%,
-        #fb65c2 83%,
-        #fd49a8 92%,
-        #fd2980 100%
+        #f97a1e 0%,
+        #f2605a 20%,
+        #fb58bb 40%,
+        #a64ddd 60%,
+        #604dfd 80%,
+        #3b6cfa 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
