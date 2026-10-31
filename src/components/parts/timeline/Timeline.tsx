@@ -129,6 +129,40 @@ const SubDetail = styled.span`
     }
 `;
 
+// role title + type/location; one line on wide screens, stacked on narrow ones
+const RoleInfo = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.4rem;
+
+    @media (max-width: 700px) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    @media (max-width: 450px) {
+        gap: 0.4rem;
+    }
+`;
+
+const RoleTitle = styled.span`
+    color: #dfdfdf;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    max-width: 100%;
+`;
+
+const RoleBullet = styled.span`
+    opacity: 0.6;
+    font-size: 0.9rem;
+
+    @media (max-width: 700px) {
+        display: none;
+    }
+`;
+
 const Bullet = styled.span`
     @media (max-width: 450px) {
         display: none;
@@ -247,6 +281,16 @@ const Positions: FC<{ positions: Position[]; collapsed: boolean }> = ({ position
     );
 };
 
+const CompanyName: FC<{ name: string; website?: string }> = ({ name, website }) => {
+    if (!website) return <span>{name}</span>;
+
+    return (
+        <CompanyWebsiteLink target="_blank" href={website} rel="noreferrer">
+            {name}
+        </CompanyWebsiteLink>
+    );
+};
+
 const Timeline: FC = () => {
     return (
         <SectionContainer
@@ -266,43 +310,26 @@ const Timeline: FC = () => {
                 <Entry key={index}>
                     <MainEntryContainer $active={!it.end}>
                         <Detail>
-                            {"title" in it ? (
-                                <span>{it.title}</span>
+                            {it.company ? (
+                                <CompanyName name={it.company} website={it.companyWebsite} />
                             ) : (
-                                it.company &&
-                                (it.companyWebsite ? (
-                                    <CompanyWebsiteLink
-                                        target={"_blank"}
-                                        href={it.companyWebsite}
-                                        rel="noreferrer"
-                                    >
-                                        {it.company}
-                                    </CompanyWebsiteLink>
-                                ) : (
-                                    <span>{it.company}</span>
-                                ))
+                                "title" in it && <span>{it.title}</span>
                             )}
-                            <SubDetail>
+                            <RoleInfo>
                                 {it.company && "title" in it && (
                                     <>
-                                        {it.companyWebsite ? (
-                                            <CompanyWebsiteLink
-                                                target={"_blank"}
-                                                href={it.companyWebsite}
-                                                rel="noreferrer"
-                                            >
-                                                {it.company}
-                                            </CompanyWebsiteLink>
-                                        ) : (
-                                            <span>{it.company}</span>
-                                        )}
-                                        <Bullet>&bull;</Bullet>
+                                        <RoleTitle>{it.title}</RoleTitle>
+                                        <RoleBullet>&bull;</RoleBullet>
                                     </>
                                 )}
-                                <span>{formatExperienceType(it.type)}</span>
-                                <Bullet>&bull;</Bullet>
-                                <span style={{ textTransform: "capitalize" }}>{it.location}</span>
-                            </SubDetail>
+                                <SubDetail>
+                                    <span>{formatExperienceType(it.type)}</span>
+                                    <Bullet>&bull;</Bullet>
+                                    <span style={{ textTransform: "capitalize" }}>
+                                        {it.location}
+                                    </span>
+                                </SubDetail>
+                            </RoleInfo>
                             <DateRangeSubDetail start={it.start} end={it.end} />
                         </Detail>
                         {it.logo && (
